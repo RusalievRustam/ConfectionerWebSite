@@ -1,7 +1,9 @@
 package com.example.ConfectionerWebsite.controllers;
 
 import com.example.ConfectionerWebsite.entities.FinishedProduct;
+import com.example.ConfectionerWebsite.entities.MeasurementUnit;
 import com.example.ConfectionerWebsite.services.FinishedProductService;
+import com.example.ConfectionerWebsite.services.MeasurementUnitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.List;
 public class FinishedProductController {
 
     private final FinishedProductService finishedProductService;
+    private final MeasurementUnitService measurementUnitService;
 
     @GetMapping("/products")
     public String getFinishedProducts(Model model) {
@@ -22,16 +25,11 @@ public class FinishedProductController {
         return "finished_products";
     }
 
-    @GetMapping("get/{id}")
-    public String finishedProductInfo(@PathVariable Long id, Model model) {
-        FinishedProduct product = finishedProductService.getFinishedProductById(id);
-        model.addAttribute("finishedProduct", product);
-        return "finished_product_info";
-    }
-
     @GetMapping("/create")
     public String createFinishedProductForm(Model model) {
+        List<MeasurementUnit> measurementUnits = measurementUnitService.getAllMeasurementUnits();
         model.addAttribute("finishedProduct", new FinishedProduct());
+        model.addAttribute("measurementUnits", measurementUnits);
         return "create_finished_product";
     }
 
@@ -55,7 +53,7 @@ public class FinishedProductController {
         return "redirect:/products";
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteFinishedProduct(@PathVariable Long id) {
         finishedProductService.deleteFinishedProduct(id);
         return "redirect:/products";

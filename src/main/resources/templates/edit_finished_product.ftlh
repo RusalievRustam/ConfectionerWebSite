@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактирование продукта</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+<#include "header.ftlh"> <!-- Подключаем header -->
+
 <h1>Редактирование продукта</h1>
 
 <form action="/edit/${finishedProduct.id}" method="post">

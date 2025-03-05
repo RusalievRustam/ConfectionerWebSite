@@ -1,7 +1,10 @@
 package com.example.ConfectionerWebsite.controllers;
 
+import com.example.ConfectionerWebsite.entities.MeasurementUnit;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
+import com.example.ConfectionerWebsite.services.MeasurementUnitService;
 import com.example.ConfectionerWebsite.services.RawMaterialService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,17 +15,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/raw-materials")
+@RequestMapping
+@AllArgsConstructor
 public class RawMaterialController {
 
     private final RawMaterialService rawMaterialService;
+    private final MeasurementUnitService measurementUnitService;
 
-    public RawMaterialController(RawMaterialService rawMaterialService) {
-        this.rawMaterialService = rawMaterialService;
-    }
 
     // Получение списка всех сырьевых материалов
-    @GetMapping
+    @GetMapping("/rawMaterials")
     public String getAllRawMaterials(Model model) {
         List<RawMaterial> rawMaterials = rawMaterialService.getAllRawMaterials();
         model.addAttribute("rawMaterials", rawMaterials);
@@ -30,21 +32,23 @@ public class RawMaterialController {
     }
 
     // Форма для создания нового сырья
-    @GetMapping("/create")
+    @GetMapping("/rawMaterial/create")
     public String createRawMaterialForm(Model model) {
+        List<MeasurementUnit> measurementUnits = measurementUnitService.getAllMeasurementUnits();
         model.addAttribute("rawMaterial", new RawMaterial());
+        model.addAttribute("measurementUnits", measurementUnits);
         return "create_raw_material"; // Имя HTML-страницы для создания сырья
     }
 
     // Сохранение нового сырья
-    @PostMapping("/create")
+    @PostMapping("/rawMaterial/create")
     public String createRawMaterial(@ModelAttribute RawMaterial rawMaterial) {
         rawMaterialService.createRawMaterial(rawMaterial);
         return "redirect:/raw-materials"; // Перенаправление на список сырья
     }
 
     // Получение формы для редактирования сырья
-    @GetMapping("/edit/{id}")
+    @GetMapping("/rawMaterial/edit/{id}")
     public String editRawMaterialForm(@PathVariable Long id, Model model) {
         RawMaterial rawMaterial = rawMaterialService.getRawMaterialById(id);
         model.addAttribute("rawMaterial", rawMaterial);
@@ -52,7 +56,7 @@ public class RawMaterialController {
     }
 
     // Обновление сырья
-    @PostMapping("/edit/{id}")
+    @PostMapping("/rawMaterial/edit/{id}")
     public String updateRawMaterial(@PathVariable Long id, @ModelAttribute RawMaterial rawMaterial) {
         rawMaterial.setId(id); // Установите ID, чтобы обновить существующую запись
         rawMaterialService.createRawMaterial(rawMaterial);
@@ -60,7 +64,7 @@ public class RawMaterialController {
     }
 
     // Удаление сырья
-    @GetMapping("/delete/{id}")
+    @GetMapping("/rawMaterial/delete/{id}")
     public String deleteRawMaterial(@PathVariable Long id) {
         rawMaterialService.deleteRawMaterial(id);
         return "redirect:/raw-materials"; // Перенаправление на список сырья

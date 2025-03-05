@@ -25,11 +25,10 @@ public class IngredientController {
 
     @GetMapping("/ingredients/{id}")
     public String finishedProductInfo(@PathVariable Long id, Model model) {
-        Ingredient ingredient = ingredientService.getIngredientById(id);
-        model.addAttribute("ingredient", ingredient);
-        return "ingredient_info";
+        List<Ingredient> ingredients = ingredientService.getIngredients(id);
+        model.addAttribute("ingredients", ingredients);
+        return "finished_product_info";
     }
-
 
     @GetMapping("/ingredients/create")
     public String createIngredientForm(Model model) {
@@ -57,7 +56,7 @@ public class IngredientController {
         return "redirect:/ingredients"; // Перенаправление на список ингредиентов
     }
 
-    @GetMapping("/ingredients/delete/{id}")
+    @DeleteMapping("/ingredients/delete/{id}")
     public String deleteIngredient(@PathVariable Long id) {
         ingredientService.deleteIngredient(id);
         return "redirect:/ingredients"; // Перенаправление на список ингредиентов

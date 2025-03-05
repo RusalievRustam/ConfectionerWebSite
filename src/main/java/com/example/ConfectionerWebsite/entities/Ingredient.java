@@ -18,7 +18,7 @@ public class Ingredient {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "finished_product_id", nullable = false)
     private FinishedProduct finishedProduct;
 

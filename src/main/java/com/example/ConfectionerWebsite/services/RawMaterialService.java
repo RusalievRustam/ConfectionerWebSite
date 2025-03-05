@@ -19,8 +19,16 @@ public class RawMaterialService {
         this.rawMaterialRepository = rawMaterialRepository;
     }
 
-    public RawMaterial createRawMaterial(RawMaterial rawMaterial){
-        return rawMaterialRepository.save(rawMaterial);
+    public void createRawMaterial(RawMaterial rawMaterial){
+        RawMaterial rawMaterialFromDb = rawMaterialRepository.findByName(rawMaterial.getName());
+        if(rawMaterialFromDb != null){
+            rawMaterialFromDb.setQuantity(rawMaterial.getQuantity() + rawMaterialFromDb.getQuantity());
+            rawMaterialFromDb.setTotalCost(rawMaterial.getTotalCost());
+            rawMaterialFromDb.setMeasurementUnit(rawMaterial.getMeasurementUnit());
+            rawMaterialRepository.save(rawMaterialFromDb);
+        }else{
+            rawMaterialRepository.save(rawMaterial);
+        }
     }
 
     public List<RawMaterial> getAllRawMaterials() {
