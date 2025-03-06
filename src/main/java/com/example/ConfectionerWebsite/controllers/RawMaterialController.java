@@ -44,7 +44,7 @@ public class RawMaterialController {
     @PostMapping("/rawMaterial/create")
     public String createRawMaterial(@ModelAttribute RawMaterial rawMaterial) {
         rawMaterialService.createRawMaterial(rawMaterial);
-        return "redirect:/raw-materials"; // Перенаправление на список сырья
+        return "redirect:/rawMaterials"; // Перенаправление на список сырья
     }
 
     // Получение формы для редактирования сырья
@@ -59,7 +59,7 @@ public class RawMaterialController {
     @PostMapping("/rawMaterial/edit/{id}")
     public String updateRawMaterial(@PathVariable Long id, @ModelAttribute RawMaterial rawMaterial) {
         rawMaterial.setId(id); // Установите ID, чтобы обновить существующую запись
-        rawMaterialService.createRawMaterial(rawMaterial);
+        rawMaterialService.updateRawMaterial(rawMaterial);
         return "redirect:/raw-materials"; // Перенаправление на список сырья
     }
 

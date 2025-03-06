@@ -7,8 +7,8 @@
 
 </head>
 <body>
+<#include "header.ftlh"> <!-- Подключаем header -->
 <h1>Сырье</h1>
-
 <#if rawMaterials?has_content>
     <table>
         <tr>
@@ -25,7 +25,7 @@
                 <td>${rawMaterial.name}</td>
                 <td>${rawMaterial.quantity}</td>
                 <td>${rawMaterial.totalCost}</td>
-                <td>${rawMaterial.measurementUnit}</td>
+                <td>${rawMaterial.measurementUnit.name}</td>
                 <td>
                     <form action="/ingredients/${rawMaterial.id}" method="get">
                         <button type="submit">Ингредиенты</button>
@@ -37,7 +37,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="rawMaterial/delete/${rawMaterial.id}" method="delete">
+                    <form action="/rawMaterial/delete/${rawMaterial.id}" method="delete">
                         <button type="submit">Удалить</button>
                     </form>
                 </td>
@@ -48,7 +48,8 @@
     <p>Нет сырья.</p>
 </#if>
 
-<form action="/rawMaterials" method="delete">
+<form action="/rawMaterial/create" method="get">
     <button type="submit">Создать</button>
-</form></body>
+</form>
+</body>
 </html>

@@ -1,6 +1,7 @@
 package com.example.ConfectionerWebsite.controllers;
 
 import com.example.ConfectionerWebsite.entities.Ingredient;
+import com.example.ConfectionerWebsite.exceptions.NotEnoughMaterialsException;
 import com.example.ConfectionerWebsite.services.IngredientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients/create")
-    public String createIngredient(@ModelAttribute Ingredient ingredient) {
+    public String createIngredient(@ModelAttribute Ingredient ingredient) throws NotEnoughMaterialsException {
         ingredientService.createIngredient(ingredient);
         return "redirect:/ingredients"; // Перенаправление на список ингредиентов
     }

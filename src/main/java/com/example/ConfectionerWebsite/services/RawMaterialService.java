@@ -45,8 +45,8 @@ public class RawMaterialService {
         rawMaterialRepository.delete(existingRawMaterial);
     }
 
-    public RawMaterial updateRawMaterial(Long id, RawMaterial updatedMaterial){
-        RawMaterial existingRawMaterial = getRawMaterialById(id);
+    public RawMaterial updateRawMaterial(RawMaterial updatedMaterial){
+        RawMaterial existingRawMaterial = getRawMaterialById(updatedMaterial.getId());
         existingRawMaterial.setName(updatedMaterial.getName());
         existingRawMaterial.setQuantity(updatedMaterial.getQuantity());
         existingRawMaterial.setTotalCost(updatedMaterial.getTotalCost());

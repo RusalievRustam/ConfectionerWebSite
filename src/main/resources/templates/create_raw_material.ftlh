@@ -11,15 +11,15 @@
 
 <h1>Создание нового сырья</h1>
 
-<form action="rawMaterial/create" method="post">
+<form action="#" th:action="@{/rawMaterial/create}" method="post">
     <label for="name">Название сырья:</label>
     <input type="text" id="name" name="name" required>
 
     <label for="quantity">Количество:</label>
-    <input type="text" id="quantity" name="quantity" required>
+    <input type="number" id="quantity" name="quantity" required step="0.01" min="0">
 
     <label for="totalCost">Стоимость:</label>
-    <input type="text" id="totalCost" name="totalCost" required>
+    <input type="number" id="totalCost" name="totalCost" required step="0.01" min="0">
 
     <label for="measurementUnit">Единица измерения:</label>
     <select id="measurementUnit" name="measurementUnit" required>
@@ -32,7 +32,7 @@
     <button type="submit">Добавить</button>
 </form>
 
-<a href="/rawMaterial/create">Назад</a>
+<a href="/rawMaterials">Назад</a>
 
 </body>
 </html>
