@@ -3,7 +3,7 @@ body {
     font-family: 'Inter', sans-serif; /* Современный шрифт */
     margin: 0;
     padding-top: 90px; /* Отступ под фиксированный header */
-    background-image: url('/images/background.jpg') ; /* Фоновое изображение */
+    background-image: url('images/background.jpg');
     background-size: cover;
     backdrop-filter: blur(5px); /* Легкое размытие */
     color: #333;
@@ -16,7 +16,6 @@ h1 {
     color: #173a3f;
     text-align: center;
 }
-
 /* Фиксированное верхнее меню (стиль glassmorphism) */
 header {
     background: rgba(23, 58, 63, 0.8); /* Полупрозрачный фон */

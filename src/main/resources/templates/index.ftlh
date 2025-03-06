@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sweetsland</title>
+  <link rel="icon" type="image/x-icon" href="icon8-cake.png">
+</head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="/">Confectioner</a>
@@ -15,3 +22,6 @@
         </div>
     </div>
 </nav>
+
+</body>
+</html>

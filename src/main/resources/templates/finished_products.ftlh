@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Список готовых продуктов</title>
     <link rel="stylesheet" href="/styles.css">
-
 </head>
 <body>
 <#include "header.ftlh"> <!-- Подключаем header -->

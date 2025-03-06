@@ -1,4 +1,7 @@
 <header>
+<div class="logo">
+ <img src="/images/icon8-cake.png" alt="Sweetsland">
+</div>
     <nav>
         <ul>
             <li><a href="/">🏠 Главная</a></li>

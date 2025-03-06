@@ -1,0 +1,101 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Fixed Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav {
+    position: relative;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-btn:hover {
+    text-decoration: underline;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    list-style: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    width: 150px;
+    border-radius: 5px;
+    display: none;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown li {
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown li:last-child {
+    border-bottom: none;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown a:hover {
+    background: #f0f0f0;
+}
+
+/* Show Dropdown */
+nav:hover .dropdown {
+    display: block;
+}
+
+/* Content Section */
+main {
+    margin-top: 80px; /* Space for fixed header */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Smooth Content Change */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
