@@ -17,7 +17,7 @@
                 ID: ${ingredients.id}, Название: ${ingredients.finishedProduct.name},
                 Сырье: ${ingredients.rawMaterial.name}, Количество: ${ingredients.quantity}
                 <a href="ingredients/edit/${ingredients.id}">Редактировать</a>
-                <form action="ingredients/delete/${ingredients.id}" method="/ingredients/post">
+                <form action="ingredients/delete/${ingredients.id}" method="/ingredients/delete">
                     <button type="submit">Удалить</button>
                 </form>
             </li>

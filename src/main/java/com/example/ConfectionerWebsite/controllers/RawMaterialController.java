@@ -60,13 +60,13 @@ public class RawMaterialController {
     public String updateRawMaterial(@PathVariable Long id, @ModelAttribute RawMaterial rawMaterial) {
         rawMaterial.setId(id); // Установите ID, чтобы обновить существующую запись
         rawMaterialService.updateRawMaterial(rawMaterial);
-        return "redirect:/raw-materials"; // Перенаправление на список сырья
+        return "redirect:/rawMaterials"; // Перенаправление на список сырья
     }
 
     // Удаление сырья
     @GetMapping("/rawMaterial/delete/{id}")
     public String deleteRawMaterial(@PathVariable Long id) {
         rawMaterialService.deleteRawMaterial(id);
-        return "redirect:/raw-materials"; // Перенаправление на список сырья
+        return "redirect:/rawMaterials"; // Перенаправление на список сырья
     }
 }

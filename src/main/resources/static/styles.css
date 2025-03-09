@@ -1,16 +1,17 @@
 /* Общие стили */
 body {
-    font-family: 'Inter', sans-serif; /* Современный шрифт */
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding-top: 90px; /* Отступ под фиксированный header */
-    background-image: url('images/background.jpg');
+    background-image: url('images/Conf.jpg');
     background-size: cover;
-    backdrop-filter: blur(5px); /* Легкое размытие */
+    background-position: center -600px;
+    background-attachment: fixed; /* Фиксируем фон при прокрутке */
+    backdrop-filter: blur(5px);
     color: #333;
-    padding-left: 20px; /* Сдвиг всего контента вправо */
-    padding-right: 20px; /* Сдвиг всего контента вправо */
+    padding-left: 20px;
+    padding-right: 20px;
 }
-
 /* Заголовки */
 h1 {
     color: #173a3f;

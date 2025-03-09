@@ -18,7 +18,6 @@
             <th>Еденица измерения</th>
             <th></th>
             <th></th>
-            <th></th>
         </tr>
         <#list rawMaterials as rawMaterial>
             <tr>
@@ -26,11 +25,6 @@
                 <td>${rawMaterial.quantity}</td>
                 <td>${rawMaterial.totalCost}</td>
                 <td>${rawMaterial.measurementUnit.name}</td>
-                <td>
-                    <form action="/ingredients/${rawMaterial.id}" method="get">
-                        <button type="submit">Ингредиенты</button>
-                    </form>
-                </td>
                 <td>
                     <form action="/rawMaterial/edit/${rawMaterial.id}" method="get">
                         <button type="submit">Редактировать</button>

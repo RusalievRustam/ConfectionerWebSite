@@ -13,8 +13,11 @@
 <form action="/edit/${finishedProduct.id}" method="post">
     <label for="name">Название:</label>
     <input type="text" id="name" name="name" value="${finishedProduct.name}" required>
-    <input type="text" id="quantity" name="quantity" value="${finishedProduct.quantity}">
+    <label for="name">Название:</label>
+    <input type="number" step=0.01 id="quantity" name="quantity" value="${finishedProduct.quantity}">
+    <label for="name">Название:</label>
     <input type="number" step=0.01 id="totalCost" name="totalCost" value="${finishedProduct.totalCost}">
+    <label for="name">Еденица измерения:</label>
     <input type="text" id="measurementUnit" name="measurementUnit" value="${finishedProduct.measurementUnit.id}">
 
     <button type="submit">Сохранить</button>
