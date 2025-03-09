@@ -9,6 +9,8 @@ import com.example.ConfectionerWebsite.repositories.MaterialPurchaseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,6 +29,7 @@ public class MaterialPurchaseService {
         }
         budget.setTotalAmount(budget.getTotalAmount() - rawMaterialPurchase.getTotalCost());
         budgetRepository.save(budget);
+        rawMaterialPurchase.setDate(LocalDate.now());
         return materialPurchaseRepository.save(rawMaterialPurchase);
     }
 

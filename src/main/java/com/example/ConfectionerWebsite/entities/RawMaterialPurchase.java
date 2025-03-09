@@ -1,9 +1,7 @@
 package com.example.ConfectionerWebsite.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -40,44 +38,44 @@ public class RawMaterialPurchase {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public RawMaterial getRawMaterial() {
         return rawMaterial;
-    }
-
-    public void setRawMaterial(RawMaterial rawMaterial) {
-        this.rawMaterial = rawMaterial;
     }
 
     public Double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(Double totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public Double getAmount() {
+    public Double getQuantity() {
         return quantity;
-    }
-
-    public void setAmount(Double amount) {
-        this.quantity = amount;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public Employee getEmployee() {
         return employee;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRawMaterial(RawMaterial rawMaterial) {
+        this.rawMaterial = rawMaterial;
+    }
+
+    public void setTotalCost(Double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public void setEmployee(Employee employee) {

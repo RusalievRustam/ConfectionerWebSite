@@ -1,6 +1,5 @@
 package com.example.ConfectionerWebsite.entities;
 
-import io.micrometer.core.annotation.Counted;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

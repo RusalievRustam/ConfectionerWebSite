@@ -26,15 +26,13 @@ public class RawMaterialPurchaseController {
     @GetMapping("/purchaseMaterials")
     public String getAllPurchaseMaterials(Model model){
         List<RawMaterialPurchase> purchases = materialPurchaseService.getAllPurchases();
-        model.addAttribute("purchaseMaterials",purchases);
+        model.addAttribute("purchaseMaterials", purchases);
         return ("purchase_materials");
     }
 
     @GetMapping("/purchaseMaterial/create")
     public String createPurchaseMaterialForm(Model model){
-        RawMaterialPurchase purchase = new RawMaterialPurchase();
-        purchase.setDate(LocalDate.now());
-        model.addAttribute("purchaseMaterial",new RawMaterialPurchase());
+        model.addAttribute("purchaseMaterial", new RawMaterialPurchase());
         return "create_purchase_material";
     }
 
