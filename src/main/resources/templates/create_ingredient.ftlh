@@ -15,8 +15,10 @@
 <form action="#" th:action="@{/create}" method="post">
     <label for="name">Название готового продукта:</label>
     <input type="text" id="finishedProduct" name="finishedProduct" required>
+
     <label for="name">Используемое сырье:</label>
     <input type="text" id="rawMaterial" name="rawMaterial" required>
+
     <label for="name">Количество:</label>
     <input type="text" id="quantity" name="quantity" required>
 

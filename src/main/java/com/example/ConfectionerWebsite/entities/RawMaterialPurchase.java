@@ -26,8 +26,8 @@ public class RawMaterialPurchase {
     @Column(name = "total_cost")
     private Double totalCost;
 
-    @Column(name = "amount")
-    private Double amount;
+    @Column(name = "quantity")
+    private Double quantity;
 
     @Column(name = "date")
     private LocalDate date;
@@ -61,11 +61,11 @@ public class RawMaterialPurchase {
     }
 
     public Double getAmount() {
-        return amount;
+        return quantity;
     }
 
     public void setAmount(Double amount) {
-        this.amount = amount;
+        this.quantity = amount;
     }
 
     public LocalDate getDate() {

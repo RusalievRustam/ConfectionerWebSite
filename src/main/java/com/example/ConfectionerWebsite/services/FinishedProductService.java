@@ -4,20 +4,17 @@ import com.example.ConfectionerWebsite.entities.FinishedProduct;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.repositories.FinishedProductRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class FinishedProductService {
 
     private FinishedProductRepository finishedProductRepository;
-
-    @Autowired
-    public FinishedProductService(FinishedProductRepository finishedProductRepository) {
-        this.finishedProductRepository = finishedProductRepository;
-    }
 
     public FinishedProduct createFinishedProduct(FinishedProduct finishedProduct) {
         return finishedProductRepository.save(finishedProduct);
