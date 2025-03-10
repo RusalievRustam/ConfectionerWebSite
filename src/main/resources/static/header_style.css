@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Fixed Header */
@@ -12,14 +12,15 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #333;
+    background: rgba(121, 85, 72, 0.8); /* Полупрозрачный кофейный */
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 /* Logo */
@@ -40,10 +41,12 @@ nav {
     font-size: 16px;
     cursor: pointer;
     padding: 10px;
+    transition: color 0.3s;
 }
 
 .menu-btn:hover {
     text-decoration: underline;
+    color: #e3d5ca;
 }
 
 /* Dropdown Menu */
@@ -52,15 +55,16 @@ nav {
     position: absolute;
     top: 40px;
     right: 0;
-    background: white;
-    width: 150px;
-    border-radius: 5px;
+    background: #f5ebe0; /* Светлый бежевый */
+    width: 160px;
+    border-radius: 8px;
     display: none;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .dropdown li {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #d7b49e;
 }
 
 .dropdown li:last-child {
@@ -69,13 +73,14 @@ nav {
 
 .dropdown a {
     display: block;
-    padding: 10px;
+    padding: 12px;
     text-decoration: none;
-    color: black;
+    color: #5d4037;
+    transition: background 0.3s;
 }
 
 .dropdown a:hover {
-    background: #f0f0f0;
+    background: #e3d5ca;
 }
 
 /* Show Dropdown */
@@ -85,9 +90,11 @@ nav:hover .dropdown {
 
 /* Content Section */
 main {
-    margin-top: 80px; /* Space for fixed header */
+    margin-top: 90px; /* Space for fixed header */
     padding: 20px;
     text-align: center;
+    background: #f5ebe0;
+    color: #5d4037;
 }
 
 /* Smooth Content Change */

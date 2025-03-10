@@ -8,18 +8,22 @@ body {
     background-position: center -600px;
     background-attachment: fixed; /* Фиксируем фон при прокрутке */
     backdrop-filter: blur(5px);
-    color: #333;
+    background-color: #f5ebe0; /* Светлый бежевый */
+    color: #5d4037; /* Тёмно-коричневый */
     padding-left: 20px;
     padding-right: 20px;
+
 }
+
 /* Заголовки */
 h1 {
-    color: #173a3f;
+    color: #795548; /* Кофейный */
     text-align: center;
 }
-/* Фиксированное верхнее меню (стиль glassmorphism) */
+
+/* Фиксированное верхнее меню (glassmorphism) */
 header {
-    background: rgba(23, 58, 63, 0.8); /* Полупрозрачный фон */
+    background: rgba(121, 85, 72, 0.8); /* Полупрозрачный кофейный */
     padding: 15px 0;
     position: fixed;
     top: 10px;
@@ -55,11 +59,12 @@ nav ul li a {
     padding: 10px 18px;
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
+    background: linear-gradient(90deg, #d7b49e, #a67c52); /* Кофейный градиент */
 }
 
 /* Эффект при наведении */
 nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(165, 117, 85, 0.5);
     transform: translateY(-2px);
 }
 
@@ -68,29 +73,28 @@ table {
     font-family: 'Inter', sans-serif;
     border-collapse: collapse;
     width: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(243, 229, 210, 0.9); /* Светлый бежевый */
     backdrop-filter: blur(5px);
     border-radius: 10px;
     overflow: hidden;
     padding: 50px;
-
 }
 
 /* Ячейки таблицы */
 td, th {
-    border: 1px solid #ccc;
+    border: 1px solid #d7b49e; /* Кофейная граница */
     text-align: left;
     padding: 10px;
 }
 
 /* Чередование строк */
 tr:nth-child(even) {
-    background-color: rgba(70, 166, 187, 0.3);
+    background-color: rgba(215, 180, 158, 0.3); /* Кремовый */
 }
 
 /* Кнопки */
 button {
-    background: linear-gradient(90deg, #46a6bb, #69c3d0);
+    background: linear-gradient(90deg, #d7b49e, #a67c52);
     border-radius: 8px;
     border: none;
     padding: 10px 15px;
@@ -102,13 +106,13 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(90deg, #69c3d0, #46a6bb);
+    background: linear-gradient(90deg, #a67c52, #d7b49e);
     transform: scale(1.05);
 }
 
 /* Ссылки */
 a {
-    color: #267785;
+    color: #8d6e63; /* Кофейный */
     text-decoration: none;
     transition: all 0.3s ease;
 }

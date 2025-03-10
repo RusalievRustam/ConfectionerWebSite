@@ -49,7 +49,7 @@ public class RawMaterialPurchaseController {
     @PostMapping("/purchaseMaterial/create")
     public String createPurchaseMaterial(@ModelAttribute RawMaterialPurchase rawMaterialPurchase) throws NotEnoughFundException {
         materialPurchaseService.createPurchase(rawMaterialPurchase);
-        return "redirect:purchaseMaterials";
+        return "redirect:/purchaseMaterials";
     }
 
 }
