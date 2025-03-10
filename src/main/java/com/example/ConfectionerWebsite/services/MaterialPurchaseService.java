@@ -1,11 +1,13 @@
 package com.example.ConfectionerWebsite.services;
 
 import com.example.ConfectionerWebsite.entities.Budget;
+import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.entities.RawMaterialPurchase;
 import com.example.ConfectionerWebsite.exceptions.NotEnoughFundException;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.repositories.BudgetRepository;
 import com.example.ConfectionerWebsite.repositories.MaterialPurchaseRepository;
+import com.example.ConfectionerWebsite.repositories.RawMaterialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class MaterialPurchaseService {
 
     private MaterialPurchaseRepository materialPurchaseRepository;
     private BudgetRepository budgetRepository;
+    private RawMaterialRepository rawMaterialRepository;
 
     public RawMaterialPurchase createPurchase(RawMaterialPurchase rawMaterialPurchase) throws NotEnoughFundException {
         Budget budget = budgetRepository.findById(1L)
@@ -29,6 +32,13 @@ public class MaterialPurchaseService {
         }
         budget.setTotalAmount(budget.getTotalAmount() - rawMaterialPurchase.getTotalCost());
         budgetRepository.save(budget);
+
+        RawMaterial rawMaterial = rawMaterialRepository.findById(rawMaterialPurchase.getRawMaterial().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Raw material not found"));
+
+        rawMaterial.setQuantity(rawMaterial.getQuantity() + rawMaterialPurchase.getQuantity());
+        rawMaterialRepository.save(rawMaterial);
+
         rawMaterialPurchase.setDate(LocalDate.now());
         return materialPurchaseRepository.save(rawMaterialPurchase);
     }

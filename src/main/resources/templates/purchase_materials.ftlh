@@ -16,17 +16,15 @@
             <th>Дата</th>
             <th>Сумма</th>
             <th>Сотрудник</th>
-            <th>id сырья</th>
-            <th></th>
-            <th></th>
+            <th>Сырье</th>
         </tr>
         <#list purchaseMaterials as purchaseMaterial>
             <tr>
                 <td>${purchaseMaterial.quantity}</td>
                 <td>${purchaseMaterial.date}</td>
                 <td>${purchaseMaterial.totalCost}</td>
-                <td>${purchaseMaterial.employee}</td>
-                <td>${purchaseMaterial.rawMaterial}</td>
+                <td>${purchaseMaterial.employee.fullName}</td>
+                <td>${purchaseMaterial.rawMaterial.name}</td>
 <#--                <td>-->
 <#--                    <form action="/rawMaterial/edit/${purchaseMaterial.id}" method="get">-->
 <#--                        <button type="submit">Редактировать</button>-->
