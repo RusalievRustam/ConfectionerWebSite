@@ -50,8 +50,10 @@ public class RawMaterialController {
     // Получение формы для редактирования сырья
     @GetMapping("/rawMaterial/edit/{id}")
     public String editRawMaterialForm(@PathVariable Long id, Model model) {
+        List<MeasurementUnit> measurementUnits = measurementUnitService.getAllMeasurementUnits();
         RawMaterial rawMaterial = rawMaterialService.getRawMaterialById(id);
         model.addAttribute("rawMaterial", rawMaterial);
+        model.addAttribute("measurementUnits", measurementUnits);
         return "edit_raw_material"; // Имя HTML-страницы для редактирования сырья
     }
 

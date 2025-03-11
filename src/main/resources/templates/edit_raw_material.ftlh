@@ -12,13 +12,23 @@
 
 <form action="/rawMaterial/edit/${rawMaterial.id}" method="post">
     <label for="name">Название:</label>
-    <input type="text" id="rawMaterial" name="rawMaterial" value="${rawMaterial.name}" required>
-    <label for="name">Количество:</label>
-    <input type="number" step=0.01 id="quantity" name="quantity" value="${rawMaterial.quantity}">
-    <label for="name">Сумма:</label>
-    <input type="number" step=0.01 id="totalCost" name="totalCost" value="${rawMaterial.totalCost}">
-    <input type="text" id="measurementUnit" name="measurementUnit" value="${rawMaterial.measurementUnit.name}">
+    <input type="text" id="name" name="name" value="${rawMaterial.name}" required placeholder="Введите название">
 
+    <label for="quantity">Количество:</label>
+    <input type="number" step="0.01" id="quantity" name="quantity" value="${rawMaterial.quantity}" required
+           placeholder="Введите количество">
+
+    <label for="totalCost">Сумма:</label>
+    <input type="number" step="0.01" id="totalCost" name="totalCost" value="${rawMaterial.totalCost}" required
+           placeholder="Введите сумму">
+
+    <label for="name">Еденица измерения:</label>
+    <select id="measurementUnit" name="measurementUnit" required>
+        <option value="">Выберите единицу измерения</option>
+        <#list measurementUnits as unit>
+            <option value="${unit.id}">${unit.name}</option>
+        </#list>
+    </select>
     <button type="submit">Сохранить</button>
 </form>
 
