@@ -1,15 +1,12 @@
 <header>
-<div class="logo">
- <img src="/images/icon8-cake.png" alt="Sweetsland">
-</div>
-    <nav>
+    <nav id="menu">
         <ul>
-            <li><a href="/products"> Продукты</a></li>
-            <li><a href="/ingredients"> Ингредиенты</a></li>
-            <li><a href="/rawMaterials"> Сырье</a></li>
-            <li><a href="/purchaseMaterials"> Закупка сырья</a></li>
+            <li><a href="/products">Продукты</a></li>
+            <li><a href="/ingredients">Ингредиенты</a></li>
+            <li><a href="/rawMaterials">Сырье</a></li>
+            <li><a href="/purchaseMaterials">Закупка сырья</a></li>
         </ul>
-        <div><span id="budget">Loading...</span></div>
+        <div id="totalBudget"><strong>Бюджет: </strong><span id="budget">Loading...</span><strong> Сом</strong></div>
     </nav>
 </header>
 <script>

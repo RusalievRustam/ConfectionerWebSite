@@ -25,16 +25,6 @@
                 <td>${purchaseMaterial.totalCost}</td>
                 <td>${purchaseMaterial.employee.fullName}</td>
                 <td>${purchaseMaterial.rawMaterial.name}</td>
-<#--                <td>-->
-<#--                    <form action="/rawMaterial/edit/${purchaseMaterial.id}" method="get">-->
-<#--                        <button type="submit">Редактировать</button>-->
-<#--                    </form>-->
-<#--                </td>-->
-<#--                <td>-->
-<#--                    <form action="/rawMaterial/delete/${rawMaterial.id}" method="delete">-->
-<#--                        <button type="submit">Удалить</button>-->
-<#--                    </form>-->
-<#--                </td>-->
             </tr>
         </#list>
     </table>

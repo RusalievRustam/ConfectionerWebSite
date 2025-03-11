@@ -41,8 +41,10 @@ public class FinishedProductController {
 
     @GetMapping("/edit/{id}")
     public String editFinishedProductForm(@PathVariable Long id, Model model) {
+        List<MeasurementUnit> measurementUnits = measurementUnitService.getAllMeasurementUnits();
         FinishedProduct product = finishedProductService.getFinishedProductById(id);
         model.addAttribute("finishedProduct", product);
+        model.addAttribute("measurementUnits", measurementUnits);
         return "edit_finished_product";
     }
 

@@ -19,6 +19,7 @@
             <th></th>
             <th></th>
         </tr>
+
         <#list rawMaterials as rawMaterial>
             <tr>
                 <td>${rawMaterial.name}</td>
