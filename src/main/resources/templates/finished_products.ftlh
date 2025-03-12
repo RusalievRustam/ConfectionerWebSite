@@ -27,6 +27,8 @@
             <th>Количество</th>
             <th>Еденица изм.</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
         <#list products as finishedProduct>
             <tr>
