@@ -9,12 +9,9 @@ import com.example.ConfectionerWebsite.services.FinishedProductService;
 import com.example.ConfectionerWebsite.services.IngredientService;
 import com.example.ConfectionerWebsite.services.RawMaterialService;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.angus.mail.auth.MD4;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
 import java.util.List;
 
@@ -71,7 +68,7 @@ public class IngredientController {
 
     @PostMapping("/ingredients/edit/{id}")
     public String updateIngredient(@PathVariable Long id, @ModelAttribute Ingredient ingredient) {
-        final var productId = ingredientService.getIngredientById(id).getFinishedProduct().getId();
+        final var productId = ingredient.getFinishedProduct().getId();
         ingredient.setId(id); // Установите ID, чтобы обновить существующую запись
         ingredientService.updateIngredient(ingredient);
         return String.format("redirect:/ingredients/%s", productId);

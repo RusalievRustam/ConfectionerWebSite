@@ -24,9 +24,9 @@
             <a href="/ingredients/edit/${ingredient.id}">
                 Update ingredient
             </a>
-            <form action="/ingredients/delete/${ingredient.id}" method="delete">
-                <button type="submit">❌</button>
-            </form>
+            <a href="/ingredients/delete/${ingredient.id}">
+                Delete
+            </a>
         </div>
     </#list>
 <#else>
