@@ -77,9 +77,9 @@ public class IngredientController {
     }
 
     @GetMapping("/ingredients/delete/{id}")
-    public String deleteIngredient(@PathVariable Long id) {
+    public void deleteIngredient(@PathVariable Long id) {
         ingredientService.deleteIngredient(id);
-        return "redirect:/ingredients"; // Перенаправление на список ингредиентов
+//        return "redirect:/ingredients"; // Перенаправление на список ингредиентов
     }
 
     @GetMapping("/ingredients/save/productId={productId}")

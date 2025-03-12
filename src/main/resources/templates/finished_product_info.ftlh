@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Детали продукта</title>
     <link rel="stylesheet" href="/styles.css">
+    <script>
+        function removeIngredientField(button) {
+            button.parentElement.remove();
+        }
+    </script>
 </head>
 <body>
 <#include "header.ftlh"> <!-- Подключаем header -->
@@ -12,13 +17,17 @@
 
 <#if ingredients?has_content>
 <h2>${ingredients[0].finishedProduct.name}</h2>
-<ul>
     <#list ingredients as ingredient>
-    <li>
+    <div>
         ${ingredient.rawMaterial.name} ${ingredient.quantity} ${ingredient.rawMaterial.measurementUnit.name}
-    </li>
+        <a href="/ingredients/edit/${ingredient.id}">
+            Update ingredient
+        </a>
+        <form action="ingredients/delete/${ingredients.id}" method="get">
+            <button type="button" onclick="removeIngredientField(this)">❌</button>
+        </form>
+    </div>
     </#list>
-</ul>
 <#else>
 <p>Нет ингредиентов.</p>
 </#if>
