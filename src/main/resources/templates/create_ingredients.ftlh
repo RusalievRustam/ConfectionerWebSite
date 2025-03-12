@@ -48,7 +48,7 @@
                 body: JSON.stringify(ingredients)
             }).then(response => response.json())
             .then(data => {
-                alert("Ingredients saved successfully!");
+                alert("Ingredients doesn't saved successfully!");
                 window.location.href = "/ingredients/productId"; // Redirect to all ingredients page
             });
         }

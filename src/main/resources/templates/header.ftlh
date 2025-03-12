@@ -2,7 +2,6 @@
     <nav id="menu">
         <ul>
             <li><a href="/products">Продукты</a></li>
-            <li><a href="/ingredients">Ингредиенты</a></li>
             <li><a href="/rawMaterials">Сырье</a></li>
             <li><a href="/purchaseMaterials">Закупка сырья</a></li>
         </ul>

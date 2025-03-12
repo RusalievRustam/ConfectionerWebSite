@@ -71,15 +71,17 @@ public class IngredientController {
 
     @PostMapping("/ingredients/edit/{id}")
     public String updateIngredient(@PathVariable Long id, @ModelAttribute Ingredient ingredient) {
+        final var productId = ingredientService.getIngredientById(id).getFinishedProduct().getId();
         ingredient.setId(id); // Установите ID, чтобы обновить существующую запись
         ingredientService.updateIngredient(ingredient);
-        return "redirect:/ingredients"; // Перенаправление на список ингредиентов
+        return String.format("redirect:/ingredients/%s", productId);
     }
 
     @GetMapping("/ingredients/delete/{id}")
-    public void deleteIngredient(@PathVariable Long id) {
+    public String deleteIngredient(@PathVariable Long id) {
+        final var productId = ingredientService.getIngredientById(id).getFinishedProduct().getId();
         ingredientService.deleteIngredient(id);
-//        return "redirect:/ingredients"; // Перенаправление на список ингредиентов
+        return String.format("redirect:/ingredients/%s", productId);
     }
 
     @GetMapping("/ingredients/save/productId={productId}")

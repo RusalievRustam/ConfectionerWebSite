@@ -5,7 +5,7 @@
     <title>Детали продукта</title>
     <link rel="stylesheet" href="/styles.css">
     <script>
-        function removeIngredientField(button,id) {
+        function removeIngredientField(button, id) {
             button.parentElement.remove();
             fetch('/ingredients/delete/id')
         }
@@ -17,23 +17,23 @@
 <h1>Информация о продукте</h1>
 
 <#if ingredients?has_content>
-<h2>${ingredients[0].finishedProduct.name}</h2>
+    <h2>${ingredients[0].finishedProduct.name}</h2>
     <#list ingredients as ingredient>
-    <div>
-        ${ingredient.rawMaterial.name} ${ingredient.quantity} ${ingredient.rawMaterial.measurementUnit.name}
-        <a href="/ingredients/edit/${ingredient.id}">
-            Update ingredient
-        </a>
-        <form action="/ingredients/delete/${ingredient.id}" method="get">
-            <button type="button" onclick="removeIngredientField(this,${ingredient.id})">❌</button>
-        </form>
-    </div>
+        <div>
+            ${ingredient.rawMaterial.name} ${ingredient.quantity} ${ingredient.rawMaterial.measurementUnit.name}
+            <a href="/ingredients/edit/${ingredient.id}">
+                Update ingredient
+            </a>
+            <form action="/ingredients/delete/${ingredient.id}" method="delete">
+                <button type="submit">❌</button>
+            </form>
+        </div>
     </#list>
 <#else>
-<p>Нет ингредиентов.</p>
+    <p>Нет ингредиентов.</p>
 </#if>
 <form action="/ingredients/save/productId=${productId}" method="get">
-<button type="submit">Добавить ингредиент</button>
+    <button type="submit">Добавить ингредиент</button>
 </form>
 
 <a href="/products">Назад к списку</a>
