@@ -5,8 +5,9 @@
     <title>Детали продукта</title>
     <link rel="stylesheet" href="/styles.css">
     <script>
-        function removeIngredientField(button) {
+        function removeIngredientField(button,id) {
             button.parentElement.remove();
+            fetch('/ingredients/delete/id')
         }
     </script>
 </head>
@@ -23,8 +24,8 @@
         <a href="/ingredients/edit/${ingredient.id}">
             Update ingredient
         </a>
-        <form action="ingredients/delete/${ingredients.id}" method="get">
-            <button type="button" onclick="removeIngredientField(this)">❌</button>
+        <form action="/ingredients/delete/${ingredient.id}" method="get">
+            <button type="button" onclick="removeIngredientField(this,${ingredient.id})">❌</button>
         </form>
     </div>
     </#list>

@@ -67,6 +67,6 @@
 
 <button type="button" onclick="addIngredientField()">➕ Add Ingredient</button>
 <button type="button" onclick="submitIngredients()">✅ Save Ingredients</button>
-<a href="/ingredients">Назад</a>
+<a href="/products">Назад</a>
 </body>
 </html>

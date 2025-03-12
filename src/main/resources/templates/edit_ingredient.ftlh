@@ -31,6 +31,6 @@
     <button type="submit">Сохранить</button>
 </form>
 
-<a href="/ingredients">Назад</a>
+<a href="/ingredients/${ingredient.finishedProduct.id}">Назад</a>
 </body>
 </html>
