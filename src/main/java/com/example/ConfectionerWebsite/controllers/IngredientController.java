@@ -81,13 +81,13 @@ public class IngredientController {
         return String.format("redirect:/ingredients/%s", productId);
     }
 
-    @GetMapping("/ingredients/save")
+    @GetMapping("/ingredients/save/productId={productId}")
     public String createIngredientsForProduct(Model model, @PathVariable Long productId) {
         model.addAttribute("productId", productId);
-        final var rawMaterials = rawMaterialService.getAllRawMaterials();
+//        final var rawMaterials = rawMaterialService.getAllRawMaterials();
         final var productName = productService.getFinishedProductById(productId).getName();
         model.addAttribute("productName", productName);
-        model.addAttribute("rawMaterials", rawMaterials);
+//        model.addAttribute("rawMaterials", rawMaterials);
         return "create_ingredients";
     }
 
