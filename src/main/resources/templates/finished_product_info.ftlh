@@ -22,6 +22,9 @@
 <#else>
 <p>Нет ингредиентов.</p>
 </#if>
+<form action="/ingredients/save/productId=${productId}" method="get">
+<button type="submit">Добавить ингредиент</button>
+</form>
 
 <a href="/products">Назад к списку</a>
 </body>

@@ -2,6 +2,8 @@ package com.example.ConfectionerWebsite.controllers;
 
 import com.example.ConfectionerWebsite.entities.Ingredient;
 import com.example.ConfectionerWebsite.exceptions.NotEnoughMaterialsException;
+import com.example.ConfectionerWebsite.model.IngredientModel;
+import com.example.ConfectionerWebsite.services.FinishedProductService;
 import com.example.ConfectionerWebsite.services.IngredientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import java.util.List;
 public class IngredientController {
 
     private final IngredientService ingredientService;
+    private final FinishedProductService productService;
 
     @GetMapping("/ingredients")
     public String getAllIngredients(Model model) {
@@ -28,6 +31,7 @@ public class IngredientController {
     public String finishedProductInfo(@PathVariable Long id, Model model) {
         List<Ingredient> ingredients = ingredientService.getIngredients(id);
         model.addAttribute("ingredients", ingredients);
+        model.addAttribute("productId", id);
         return "finished_product_info";
     }
 
@@ -61,5 +65,20 @@ public class IngredientController {
     public String deleteIngredient(@PathVariable Long id) {
         ingredientService.deleteIngredient(id);
         return "redirect:/ingredients"; // Перенаправление на список ингредиентов
+    }
+
+    @GetMapping("/ingredients/save/productId={productId}")
+    public String createIngredientsForProduct(Model model, @PathVariable Long productId) {
+        model.addAttribute("productId", productId);
+        final var productName = productService.getFinishedProductById(productId).getName();
+        model.addAttribute("productName", productName);
+        return "create_ingredients";
+    }
+
+    @PostMapping("/ingredients/save")
+    public String saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) {
+        ingredientService.saveAll(ingredientsModel);
+        final long id = ingredientsModel.get(0).getProductId();
+        return String.format("redirect:/ingredients/%s", id);
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class RawMaterialService {
-    private RawMaterialRepository rawMaterialRepository;
+    private final RawMaterialRepository rawMaterialRepository;
 
     @Autowired
     public RawMaterialService(RawMaterialRepository rawMaterialRepository){
@@ -52,5 +52,9 @@ public class RawMaterialService {
         existingRawMaterial.setTotalCost(updatedMaterial.getTotalCost());
         existingRawMaterial.setMeasurementUnit(updatedMaterial.getMeasurementUnit());
         return rawMaterialRepository.save(existingRawMaterial);
+    }
+
+    public RawMaterial getMaterialByName(String name) {
+        return rawMaterialRepository.findByName(name);
     }
 }

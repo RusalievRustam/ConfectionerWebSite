@@ -4,6 +4,8 @@ import com.example.ConfectionerWebsite.entities.Ingredient;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.NotEnoughMaterialsException;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
+import com.example.ConfectionerWebsite.mapping.IngredientsMapping;
+import com.example.ConfectionerWebsite.model.IngredientModel;
 import com.example.ConfectionerWebsite.repositories.IngredientRepository;
 import com.example.ConfectionerWebsite.repositories.RawMaterialRepository;
 import lombok.AllArgsConstructor;
@@ -17,9 +19,13 @@ public class IngredientService {
 
     private IngredientRepository ingredientRepository;
     private RawMaterialRepository rawMaterialRepository;
+    private IngredientsMapping ingredientsMapping;
 
     public Ingredient createIngredient(Ingredient ingredient) throws NotEnoughMaterialsException {
         RawMaterial rawMaterial = rawMaterialRepository.findByName(ingredient.getRawMaterial().getName());
+        if (rawMaterial == null) {
+            throw new NotEnoughMaterialsException("There is no such a materials in store.You should restore.");
+        }
         if (rawMaterial.getQuantity() < ingredient.getQuantity()) {
             throw new NotEnoughMaterialsException("Not enough raw materials.You should restore.");
         }
@@ -37,8 +43,7 @@ public class IngredientService {
     }
 
     public List<Ingredient> getIngredients(Long finishedProductId) {
-        List<Ingredient> ingredients = ingredientRepository.getByFinishedProductId(finishedProductId);
-        return ingredients;
+        return ingredientRepository.getByFinishedProductId(finishedProductId);
     }
 
     public Ingredient updateIngredient(Ingredient updatedIngredient) {
@@ -51,5 +56,12 @@ public class IngredientService {
 
     public void deleteIngredient(Long id) {
         ingredientRepository.deleteById(id);
+    }
+
+    public void saveAll(List<IngredientModel> ingredientModels) {
+        ingredientModels.forEach(model -> {
+            final var ingredient = ingredientsMapping.map(model);
+            ingredientRepository.save(ingredient);
+        });
     }
 }
