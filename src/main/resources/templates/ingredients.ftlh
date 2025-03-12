@@ -14,7 +14,7 @@
     <ul>
         <#list ingredients as ingredients>
             <li>
-                ID: ${ingredients.id}, Название: ${ingredients.finishedProduct.name},
+                Название: ${ingredients.finishedProduct.name},
                 Сырье: ${ingredients.rawMaterial.name}, Количество: ${ingredients.quantity}
                 <a href="ingredients/edit/${ingredients.id}">Редактировать</a>
                 <form action="ingredients/delete/${ingredients.id}" method="/ingredients/delete">

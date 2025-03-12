@@ -22,15 +22,32 @@ public class IngredientService {
     private IngredientsMapping ingredientsMapping;
 
     public Ingredient createIngredient(Ingredient ingredient) throws NotEnoughMaterialsException {
+        // Ищем сырье по названию
         RawMaterial rawMaterial = rawMaterialRepository.findByName(ingredient.getRawMaterial().getName());
         if (rawMaterial == null) {
-            throw new NotEnoughMaterialsException("There is no such a materials in store.You should restore.");
+            throw new NotEnoughMaterialsException("There is no such material in store. You should restore.");
         }
         if (rawMaterial.getQuantity() < ingredient.getQuantity()) {
-            throw new NotEnoughMaterialsException("Not enough raw materials.You should restore.");
+            throw new NotEnoughMaterialsException("Not enough raw materials. You should restore.");
         }
+
+        // Ищем ингредиент по продукту и названию сырья
+        Ingredient existingIngredient = ingredientRepository
+                .findByFinishedProductAndRawMaterialName(ingredient.getFinishedProduct(), rawMaterial.getName());
+
+        if (existingIngredient != null) {
+            // Увеличиваем количество существующего ингредиента
+            existingIngredient.setQuantity(existingIngredient.getQuantity() + ingredient.getQuantity());
+            ingredient = existingIngredient;
+        } else {
+            // Привязываем найденное сырье к новому ингредиенту
+            ingredient.setRawMaterial(rawMaterial);
+        }
+
+        // Обновляем количество сырья
         rawMaterial.setQuantity(rawMaterial.getQuantity() - ingredient.getQuantity());
         rawMaterialRepository.save(rawMaterial);
+
         return ingredientRepository.save(ingredient);
     }
 

@@ -15,14 +15,16 @@
         <tr>
             <th>Продукт</th>
             <th>Цена</th>
-            <th></th>
-            <th></th>
+            <th>Количество</th>
+            <th>Еденица изм.</th>
             <th></th>
         </tr>
         <#list products as finishedProduct>
             <tr>
                 <td>${finishedProduct.name}</td>
                 <td>${finishedProduct.totalCost}</td>
+                <td>${finishedProduct.quantity}</td>
+                <td>${finishedProduct.measurementUnit.name}</td>
                 <td>
                     <form action="/ingredients/${finishedProduct.id}" method="get">
                         <button type="submit">Ингредиенты</button>

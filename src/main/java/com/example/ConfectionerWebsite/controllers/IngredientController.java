@@ -1,14 +1,20 @@
 package com.example.ConfectionerWebsite.controllers;
 
+import com.example.ConfectionerWebsite.entities.FinishedProduct;
 import com.example.ConfectionerWebsite.entities.Ingredient;
+import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.NotEnoughMaterialsException;
 import com.example.ConfectionerWebsite.model.IngredientModel;
 import com.example.ConfectionerWebsite.services.FinishedProductService;
 import com.example.ConfectionerWebsite.services.IngredientService;
+import com.example.ConfectionerWebsite.services.RawMaterialService;
 import lombok.RequiredArgsConstructor;
+import org.eclipse.angus.mail.auth.MD4;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.model.IModel;
 
 import java.util.List;
 
@@ -19,6 +25,7 @@ public class IngredientController {
 
     private final IngredientService ingredientService;
     private final FinishedProductService productService;
+    private final RawMaterialService rawMaterialService;
 
     @GetMapping("/ingredients")
     public String getAllIngredients(Model model) {
@@ -37,6 +44,10 @@ public class IngredientController {
 
     @GetMapping("/ingredients/create")
     public String createIngredientForm(Model model) {
+        List<FinishedProduct> finishedProducts = productService.getAllProducts();
+        List<RawMaterial> rawMaterials = rawMaterialService.getAllRawMaterials();
+        model.addAttribute("finishedProducts", finishedProducts);
+        model.addAttribute("rawMaterials", rawMaterials);
         model.addAttribute("ingredient", new Ingredient());
         return "create_ingredient"; // Имя HTML-страницы для создания ингредиента
     }
@@ -49,6 +60,10 @@ public class IngredientController {
 
     @GetMapping("/ingredients/edit/{id}")
     public String editIngredientForm(@PathVariable Long id, Model model) {
+        List<FinishedProduct> finishedProducts = productService.getAllProducts();
+        List<RawMaterial> rawMaterials = rawMaterialService.getAllRawMaterials();
+        model.addAttribute("finishedProducts", finishedProducts);
+        model.addAttribute("rawMaterials", rawMaterials);
         Ingredient ingredient = ingredientService.getIngredientById(id);
         model.addAttribute("ingredient", ingredient);
         return "edit_ingredient"; // Имя HTML-страницы для редактирования ингредиента
