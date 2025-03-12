@@ -40,7 +40,7 @@
                     </form>
                 </td>
                 <td>
-                    <button type="submit" onclick="deleteRawMaterial(${rawMaterial.id}})">Удалить</button>
+                    <button type="submit" onclick="deleteRawMaterial(${rawMaterial.id})">Удалить</button>
                 </td>
             </tr>
         </#list>
