@@ -9,6 +9,8 @@ import com.example.ConfectionerWebsite.services.FinishedProductService;
 import com.example.ConfectionerWebsite.services.IngredientService;
 import com.example.ConfectionerWebsite.services.RawMaterialService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -97,9 +99,8 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients/save")
-    public String saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) throws IngredientsException {
+    public ResponseEntity saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) throws IngredientsException {
         ingredientService.saveAll(ingredientsModel);
-        final long id = ingredientsModel.get(0).getProductId();
-        return String.format("redirect:/ingredients/%s", id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

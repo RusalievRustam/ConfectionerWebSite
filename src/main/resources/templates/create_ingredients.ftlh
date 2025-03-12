@@ -51,10 +51,14 @@
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(ingredients)
-            }).then(response => response.json())
-            .then(data => {
-                window.location.href = "/ingredients/${productId}"; // Redirect to all ingredients page
-                alert(data.message);
+            }).then(response => {
+                if(response?.ok) {
+                    window.location.href = "/ingredients/${productId}"; // Redirect to all ingredients page
+                } else {
+                    return response.json();
+                }
+            }).then(json => {
+                alert(json.message);
             });
         }
     </script>
@@ -72,6 +76,6 @@
 
 <button type="button" onclick="addIngredientField()">➕ Add Ingredient</button>
 <button type="button" onclick="submitIngredients()">✅ Save Ingredients</button>
-<a href="/products">Назад</a>
+<a href="/ingredients/${productId}">Назад</a>
 </body>
 </html>

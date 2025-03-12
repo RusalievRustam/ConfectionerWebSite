@@ -24,27 +24,24 @@ public class IngredientService {
     public void createIngredient(Ingredient ingredient) throws IngredientsException {
         // Ищем сырье по названию
         RawMaterial rawMaterial = rawMaterialRepository.findByName(ingredient.getRawMaterial().getName());
-        if (rawMaterial.getQuantity() < ingredient.getQuantity()) {
-            throw new IngredientsException("Not enough raw materials. You should restore.");
-        }
-
-        // Ищем ингредиент по продукту и названию сырья
+        // Check, if there is already an assigned raw material to the finished product
         Ingredient existingIngredient = ingredientRepository
                 .findByFinishedProductAndRawMaterialName(ingredient.getFinishedProduct(), rawMaterial.getName());
-
-        if (existingIngredient != null) {
-            // Увеличиваем количество существующего ингредиента
-            throw new IngredientsException("There's already such ingredient for this product");
+        if (existingIngredient == null) {
+            if (rawMaterial.getQuantity() >= ingredient.getQuantity()) {
+                // Обновляем количество сырья
+                rawMaterial.setQuantity(rawMaterial.getQuantity() - ingredient.getQuantity());
+                rawMaterialRepository.save(rawMaterial);
+                ingredient.setRawMaterial(rawMaterial);
+                ingredientRepository.save(ingredient);
+            } else {
+                throw new IngredientsException(String.format("There is not enough %s in store. You should restore.",
+                        rawMaterial.getName()));
+            }
         } else {
-            // Привязываем найденное сырье к новому ингредиенту
-            ingredient.setRawMaterial(rawMaterial);
+            throw new IngredientsException(String.format("There's already %s for this product. You can update ingredient instead.",
+                    rawMaterial.getName()));
         }
-
-        // Обновляем количество сырья
-        rawMaterial.setQuantity(rawMaterial.getQuantity() - ingredient.getQuantity());
-        rawMaterialRepository.save(rawMaterial);
-
-        ingredientRepository.save(ingredient);
     }
 
     public List<Ingredient> getAllIngredients() {
