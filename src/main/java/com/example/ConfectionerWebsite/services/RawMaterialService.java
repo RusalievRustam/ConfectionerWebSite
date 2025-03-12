@@ -4,8 +4,6 @@ import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.repositories.RawMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +24,7 @@ public class RawMaterialService {
             rawMaterialFromDb.setTotalCost(rawMaterial.getTotalCost());
             rawMaterialFromDb.setMeasurementUnit(rawMaterial.getMeasurementUnit());
             rawMaterialRepository.save(rawMaterialFromDb);
-        }else{
+        } else {
             rawMaterialRepository.save(rawMaterial);
         }
     }
@@ -45,13 +43,13 @@ public class RawMaterialService {
         rawMaterialRepository.delete(existingRawMaterial);
     }
 
-    public RawMaterial updateRawMaterial(RawMaterial updatedMaterial){
+    public void updateRawMaterial(RawMaterial updatedMaterial){
         RawMaterial existingRawMaterial = getRawMaterialById(updatedMaterial.getId());
         existingRawMaterial.setName(updatedMaterial.getName());
         existingRawMaterial.setQuantity(updatedMaterial.getQuantity());
         existingRawMaterial.setTotalCost(updatedMaterial.getTotalCost());
         existingRawMaterial.setMeasurementUnit(updatedMaterial.getMeasurementUnit());
-        return rawMaterialRepository.save(existingRawMaterial);
+        rawMaterialRepository.save(existingRawMaterial);
     }
 
     public RawMaterial getMaterialByName(String name) {

@@ -81,7 +81,7 @@ public class IngredientController {
         return String.format("redirect:/ingredients/%s", productId);
     }
 
-    @GetMapping("/ingredients/save/productId={productId}")
+    @GetMapping("/ingredients/save")
     public String createIngredientsForProduct(Model model, @PathVariable Long productId) {
         model.addAttribute("productId", productId);
         final var productName = productService.getFinishedProductById(productId).getName();
@@ -90,7 +90,7 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients/save")
-    public String saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) {
+    public String saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) throws NotEnoughMaterialsException {
         ingredientService.saveAll(ingredientsModel);
         final long id = ingredientsModel.get(0).getProductId();
         return String.format("redirect:/ingredients/%s", id);

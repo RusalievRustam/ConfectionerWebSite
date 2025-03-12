@@ -21,7 +21,7 @@ public class IngredientService {
     private RawMaterialRepository rawMaterialRepository;
     private IngredientsMapping ingredientsMapping;
 
-    public Ingredient createIngredient(Ingredient ingredient) throws NotEnoughMaterialsException {
+    public void createIngredient(Ingredient ingredient) throws NotEnoughMaterialsException {
         // Ищем сырье по названию
         RawMaterial rawMaterial = rawMaterialRepository.findByName(ingredient.getRawMaterial().getName());
         if (rawMaterial == null) {
@@ -48,7 +48,7 @@ public class IngredientService {
         rawMaterial.setQuantity(rawMaterial.getQuantity() - ingredient.getQuantity());
         rawMaterialRepository.save(rawMaterial);
 
-        return ingredientRepository.save(ingredient);
+        ingredientRepository.save(ingredient);
     }
 
     public List<Ingredient> getAllIngredients() {
@@ -63,22 +63,22 @@ public class IngredientService {
         return ingredientRepository.getByFinishedProductId(finishedProductId);
     }
 
-    public Ingredient updateIngredient(Ingredient updatedIngredient) {
+    public void updateIngredient(Ingredient updatedIngredient) {
         Ingredient existingIngredient = getIngredientById(updatedIngredient.getId());
         existingIngredient.setFinishedProduct(updatedIngredient.getFinishedProduct());
         existingIngredient.setRawMaterial(updatedIngredient.getRawMaterial());
         existingIngredient.setQuantity(updatedIngredient.getQuantity());
-        return ingredientRepository.save(existingIngredient);
+        ingredientRepository.save(existingIngredient);
     }
 
     public void deleteIngredient(Long id) {
         ingredientRepository.deleteById(id);
     }
 
-    public void saveAll(List<IngredientModel> ingredientModels) {
-        ingredientModels.forEach(model -> {
+    public void saveAll(List<IngredientModel> ingredientModels) throws NotEnoughMaterialsException {
+        for (IngredientModel model : ingredientModels) {
             final var ingredient = ingredientsMapping.map(model);
-            ingredientRepository.save(ingredient);
-        });
+            createIngredient(ingredient);
+        }
     }
 }
