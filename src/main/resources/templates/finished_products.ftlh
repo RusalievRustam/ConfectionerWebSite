@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Список готовых продуктов</title>
     <link rel="stylesheet" href="/styles.css">
+    <script>
+        function deleteProduct(id) {
+            if (window.confirm("Do you want to delete the product?")) {
+                window.location.href = "/delete/" + id;
+            } else {
+
+            }
+        }
+    </script>
 </head>
 <body>
 <#include "header.ftlh"> <!-- Подключаем header -->
@@ -36,9 +45,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/delete/${finishedProduct.id}" method="/delete">
-                        <button type="submit">Удалить</button>
-                    </form>
+                    <button id="deleteButton" onclick="deleteProduct(${finishedProduct.id})">Удалить</button>
                 </td>
             </tr>
         </#list>

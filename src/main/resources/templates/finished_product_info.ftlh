@@ -12,8 +12,9 @@
 
 <#if ingredients?has_content>
     <h2>${ingredients[0].finishedProduct.name}</h2>
+<ul>
     <#list ingredients as ingredient>
-        <div>
+        <li>
             ${ingredient.rawMaterial.name} ${ingredient.quantity} ${ingredient.rawMaterial.measurementUnit.name}
             <a href="/ingredients/edit/${ingredient.id}">
                 Update ingredient
@@ -21,8 +22,9 @@
             <a href="/ingredients/delete/${ingredient.id}">
                 Delete
             </a>
-        </div>
+        </li>
     </#list>
+</ul>
 <#else>
     <p>Нет ингредиентов.</p>
 </#if>

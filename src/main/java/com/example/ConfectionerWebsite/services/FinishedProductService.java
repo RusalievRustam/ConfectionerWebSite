@@ -4,6 +4,7 @@ import com.example.ConfectionerWebsite.entities.FinishedProduct;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.repositories.FinishedProductRepository;
+import com.example.ConfectionerWebsite.repositories.IngredientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 public class FinishedProductService {
 
     private FinishedProductRepository finishedProductRepository;
+    private IngredientRepository ingredientRepository;
 
     public FinishedProduct createFinishedProduct(FinishedProduct finishedProduct) {
         return finishedProductRepository.save(finishedProduct);
@@ -39,6 +41,8 @@ public class FinishedProductService {
     }
 
     public void deleteFinishedProduct(Long id) {
+        final var ingredients = ingredientRepository.findAllByFinishedProductId(id);
+        ingredients.forEach(ingredientRepository::delete);
         finishedProductRepository.deleteById(id);
     }
 }

@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <title>Список сырья</title>
     <link rel="stylesheet" href="/styles.css">
+    <script>
+        function deleteRawMaterial(id) {
+            if (window.confirm("Do you want to delete the material?")) {
+                window.location.href = "/rawMaterial/delete/" + id;
+            } else {
 
+            }
+        }
+    </script>
 </head>
 <body>
 <#include "header.ftlh"> <!-- Подключаем header -->
@@ -32,9 +40,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/rawMaterial/delete/${rawMaterial.id}" method="delete">
-                        <button type="submit">Удалить</button>
-                    </form>
+                    <button type="submit" onclick="deleteRawMaterial(${rawMaterial.id}})">Удалить</button>
                 </td>
             </tr>
         </#list>

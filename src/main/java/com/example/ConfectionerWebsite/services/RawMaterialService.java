@@ -2,20 +2,19 @@ package com.example.ConfectionerWebsite.services;
 
 import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
+import com.example.ConfectionerWebsite.repositories.IngredientRepository;
 import com.example.ConfectionerWebsite.repositories.RawMaterialRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class RawMaterialService {
     private final RawMaterialRepository rawMaterialRepository;
-
-    @Autowired
-    public RawMaterialService(RawMaterialRepository rawMaterialRepository){
-        this.rawMaterialRepository = rawMaterialRepository;
-    }
+    private final IngredientRepository ingredientRepository;
 
     public void createRawMaterial(RawMaterial rawMaterial){
         RawMaterial rawMaterialFromDb = rawMaterialRepository.findByName(rawMaterial.getName());
@@ -39,6 +38,8 @@ public class RawMaterialService {
     }
 
     public void deleteRawMaterial(Long id) {
+        final var ingredients = ingredientRepository.findAllByRawMaterialId(id);
+        ingredients.forEach(ingredientRepository::delete);
         RawMaterial existingRawMaterial = getRawMaterialById(id);
         rawMaterialRepository.delete(existingRawMaterial);
     }
