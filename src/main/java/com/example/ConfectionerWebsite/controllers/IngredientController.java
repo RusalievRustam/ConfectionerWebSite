@@ -84,8 +84,10 @@ public class IngredientController {
     @GetMapping("/ingredients/save")
     public String createIngredientsForProduct(Model model, @PathVariable Long productId) {
         model.addAttribute("productId", productId);
+        final var rawMaterials = rawMaterialService.getAllRawMaterials();
         final var productName = productService.getFinishedProductById(productId).getName();
         model.addAttribute("productName", productName);
+        model.addAttribute("rawMaterials", rawMaterials);
         return "create_ingredients";
     }
 
