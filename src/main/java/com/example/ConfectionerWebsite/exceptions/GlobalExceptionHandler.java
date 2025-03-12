@@ -7,12 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<String> handlerException(Exception e){
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//    }
+
     @ExceptionHandler(IngredientsException.class)
-    public ResponseEntity<String> handleNotEnoughMaterialException(IngredientsException e){
-        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(e.getMessage());
+    public ResponseEntity<Object> handleNotEnoughMaterialException(IngredientsException e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
     }
 }

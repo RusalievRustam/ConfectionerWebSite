@@ -53,9 +53,9 @@
                 body: JSON.stringify(ingredients)
             }).then(response => response.json())
             .then(data => {
-                alert(data);
+                window.location.href = "/ingredients/${productId}"; // Redirect to all ingredients page
+                alert(data.message);
             });
-            window.location.href = "/ingredients/${productId}"; // Redirect to all ingredients page
         }
     </script>
 </head>
