@@ -11,8 +11,8 @@ public class GlobalExceptionHandler {
 //    public ResponseEntity<String> handlerException(Exception e){
 //        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 //    }
-    @ExceptionHandler(NotEnoughMaterialsException.class)
-    public ResponseEntity<String> handleNotEnoughMaterialException(NotEnoughMaterialsException e){
+    @ExceptionHandler(IngredientsException.class)
+    public ResponseEntity<String> handleNotEnoughMaterialException(IngredientsException e){
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(e.getMessage());
     }
 }

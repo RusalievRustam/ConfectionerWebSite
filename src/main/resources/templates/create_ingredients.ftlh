@@ -37,7 +37,7 @@
             let ingredientItems = document.querySelectorAll(".ingredient-item");
 
             ingredientItems.forEach(item => {
-                let ingredient = item.querySelector("select[name='name']").value;
+                let ingredient = item.querySelector("select[name='rawMaterial']").value;
                 let quantity = item.querySelector("input[name='quantity']").value;
 
                 ingredients.push({
@@ -53,9 +53,9 @@
                 body: JSON.stringify(ingredients)
             }).then(response => response.json())
             .then(data => {
-                alert("Ingredients doesn't saved successfully!");
-                window.location.href = "/ingredients/productId"; // Redirect to all ingredients page
+                alert(data);
             });
+            window.location.href = "/ingredients/${productId}"; // Redirect to all ingredients page
         }
     </script>
 </head>

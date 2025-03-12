@@ -3,7 +3,7 @@ package com.example.ConfectionerWebsite.controllers;
 import com.example.ConfectionerWebsite.entities.FinishedProduct;
 import com.example.ConfectionerWebsite.entities.Ingredient;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
-import com.example.ConfectionerWebsite.exceptions.NotEnoughMaterialsException;
+import com.example.ConfectionerWebsite.exceptions.IngredientsException;
 import com.example.ConfectionerWebsite.model.IngredientModel;
 import com.example.ConfectionerWebsite.services.FinishedProductService;
 import com.example.ConfectionerWebsite.services.IngredientService;
@@ -51,7 +51,7 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients/create")
-    public String createIngredient(@ModelAttribute Ingredient ingredient) throws NotEnoughMaterialsException {
+    public String createIngredient(@ModelAttribute Ingredient ingredient) throws IngredientsException {
         ingredientService.createIngredient(ingredient);
         return "redirect:/ingredients"; // Перенаправление на список ингредиентов
     }
@@ -97,7 +97,7 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients/save")
-    public String saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) throws NotEnoughMaterialsException {
+    public String saveIngredients(@RequestBody List<IngredientModel> ingredientsModel) throws IngredientsException {
         ingredientService.saveAll(ingredientsModel);
         final long id = ingredientsModel.get(0).getProductId();
         return String.format("redirect:/ingredients/%s", id);
