@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -81,13 +82,17 @@ public class IngredientController {
         return String.format("redirect:/ingredients/%s", productId);
     }
 
-    @GetMapping("/ingredients/save/productId={productId}")
-    public String createIngredientsForProduct(Model model, @PathVariable Long productId) {
-        model.addAttribute("productId", productId);
-//        final var rawMaterials = rawMaterialService.getAllRawMaterials();
+    @GetMapping("/ingredients/save/{productId}")
+    public String createIngredientsForProduct(@PathVariable Long productId, Model model) {
+        final var rawMaterials = rawMaterialService.getAllRawMaterials();
+        final var materialNames = new ArrayList<String>();
+        rawMaterials.forEach(rawMaterial -> {
+            materialNames.add(rawMaterial.getName());
+        });
         final var productName = productService.getFinishedProductById(productId).getName();
+        model.addAttribute("productId", productId);
         model.addAttribute("productName", productName);
-//        model.addAttribute("rawMaterials", rawMaterials);
+        model.addAttribute("rawMaterials", materialNames);
         return "create_ingredients";
     }
 

@@ -13,7 +13,12 @@
             div.classList.add("ingredient-item");
 
             div.innerHTML = `
-                <input type="text" name="name" placeholder="Ingredient Name" required>
+                <select name="rawMaterial">
+                    <option value="">-- Select Ingredient --</option>
+                    <#list rawMaterials as rawMaterial>
+                    <option value="${rawMaterial}">${rawMaterial}</option>
+                    </#list>
+                </select>
                 <input type="number" name="quantity" placeholder="Quantity" required>
                 <button type="button" onclick="removeIngredientField(this)">❌</button>
             `;
@@ -32,7 +37,7 @@
             let ingredientItems = document.querySelectorAll(".ingredient-item");
 
             ingredientItems.forEach(item => {
-                let ingredient = item.querySelector("input[name='name']").value;
+                let ingredient = item.querySelector("select[name='name']").value;
                 let quantity = item.querySelector("input[name='quantity']").value;
 
                 ingredients.push({
