@@ -14,11 +14,6 @@
 
             div.innerHTML = `
                 <input type="text" name="name" placeholder="Ingredient Name" required>
-                <select id="rawMaterial" name="rawMaterial">
-                    <#list rawMaterials as raw>
-                    <option value="${raw.id}" ${raw.name}</option>
-                    </#list>
-                </select>
                 <input type="number" name="quantity" placeholder="Quantity" required>
                 <button type="button" onclick="removeIngredientField(this)">❌</button>
             `;
@@ -37,7 +32,7 @@
             let ingredientItems = document.querySelectorAll(".ingredient-item");
 
             ingredientItems.forEach(item => {
-                let ingredient = item.querySelector("select[name='rawMaterial']").value;
+                let ingredient = item.querySelector("input[name='name']").value;
                 let quantity = item.querySelector("input[name='quantity']").value;
 
                 ingredients.push({
