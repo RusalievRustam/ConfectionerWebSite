@@ -72,7 +72,18 @@
 
 <p>Adding ingredients for Product: <strong>${productName}</strong></p>
 
-<div id="ingredients-container"></div>
+<div id="ingredients-container">
+    <div id="ingredient-item" class="ingredient-item">
+        <select name="rawMaterial">
+            <option value="">-- Select Ingredient --</option>
+            <#list rawMaterials as rawMaterial>
+            <option value="${rawMaterial}">${rawMaterial}</option>
+            </#list>
+        </select>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <button type="button" onclick="removeIngredientField(this)">❌</button>
+    </div>
+</div>
 
 <button type="button" onclick="addIngredientField()">➕ Add Ingredient</button>
 <button type="button" onclick="submitIngredients()">✅ Save Ingredients</button>

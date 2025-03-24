@@ -4,20 +4,14 @@ import com.example.ConfectionerWebsite.entities.Employee;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.entities.RawMaterialPurchase;
 import com.example.ConfectionerWebsite.exceptions.NotEnoughFundException;
-import com.example.ConfectionerWebsite.repositories.MaterialPurchaseRepository;
 import com.example.ConfectionerWebsite.services.EmployeeService;
 import com.example.ConfectionerWebsite.services.MaterialPurchaseService;
 import com.example.ConfectionerWebsite.services.RawMaterialService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -47,7 +41,7 @@ public class RawMaterialPurchaseController {
     }
 
     @PostMapping("/purchaseMaterial/create")
-    public String createPurchaseMaterial(@ModelAttribute RawMaterialPurchase rawMaterialPurchase) throws NotEnoughFundException {
+    public String createPurchaseMaterial(@RequestBody RawMaterialPurchase rawMaterialPurchase) throws NotEnoughFundException {
         materialPurchaseService.createPurchase(rawMaterialPurchase);
         return "redirect:/purchaseMaterials";
     }
