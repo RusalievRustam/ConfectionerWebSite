@@ -57,11 +57,11 @@
         event.preventDefault(); // Prevent normal form submission
 
         const rawMaterialPurchase = {
-            rawMaterial: document.getElementById("rawMaterial").value,
-            quantity: document.getElementById("quantity").value,
+            rawMaterial: { id: document.getElementById("rawMaterial").value },
+            quantity: parseFloat(document.getElementById("quantity").value),
             date: document.getElementById("date").value,
-            totalCost: document.getElementById("totalCost").value,
-            employee: document.getElementById("employee").value
+            totalCost: parseFloat(document.getElementById("totalCost").value),
+            employee: { id: document.getElementById("employee").value }
         };
 
         fetch("/purchaseMaterial/create", {
@@ -73,7 +73,7 @@
             if (!response?.ok) {
                 return response.json();
             } else {
-                window.open.href ="/purchaseMaterials";
+                window.location.href ="/purchaseMaterials";
             }
         }).then(json => {
             alert(json.message);
