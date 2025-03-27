@@ -17,7 +17,7 @@
     <select id="rawMaterial" name="rawMaterial" required>
         <option value="">Выберите сырье</option>
         <#list rawMaterials as material>
-        <option value="${material.id}">${material.name}</option>
+            <option value="${material.id}">${material.name}</option>
         </#list>
     </select>
 
@@ -25,19 +25,19 @@
     <label for="quantity">Количество:</label>
     <input type="number" id="quantity" name="quantity" required step="0.01" min="0">
 
-    <!-- Дата -->
-    <label for="date">Дата:</label>
-    <input type="date" id="date" name="date" required>
-
     <!-- Сумма -->
     <label for="totalCost">Сумма:</label>
     <input type="number" id="totalCost" name="totalCost" required step="0.01" min="0">
 
-        <!-- Выбор сотрудника -->
-        <label for="employee">Сотрудник:</label>
-        <select id="employee" name="employee" required>
-            <option value="">Выберите сотрудника</option>
-            <#list employees as employee>
+    <!-- Дата -->
+    <label for="date">Дата:</label>
+    <input type="date" id="date" name="date" required>
+
+    <!-- Выбор сотрудника -->
+    <label for="employee">Сотрудник:</label>
+    <select id="employee" name="employee" required>
+        <option value="">Выберите сотрудника</option>
+        <#list employees as employee>
             <option value="${employee.id}">${employee.fullName}</option>
         </#list>
     </select>
@@ -53,29 +53,29 @@
         document.getElementById("date").value = today;
     });
 
-    document.getElementById("purchaseForm").addEventListener("submit", function(event) {
+    document.getElementById("purchaseForm").addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent normal form submission
 
         const rawMaterialPurchase = {
-            rawMaterial: { id: document.getElementById("rawMaterial").value },
+            rawMaterial: {id: document.getElementById("rawMaterial").value},
             quantity: parseFloat(document.getElementById("quantity").value),
             date: document.getElementById("date").value,
             totalCost: parseFloat(document.getElementById("totalCost").value),
-            employee: { id: document.getElementById("employee").value }
+            employee: {id: document.getElementById("employee").value}
         };
 
         fetch("/purchaseMaterial/create", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(rawMaterialPurchase)
         })
-        .then(response => {
-            if (!response?.ok) {
-                return response.json();
-            } else {
-                window.location.href ="/purchaseMaterials";
-            }
-        }).then(json => {
+            .then(response => {
+                if (!response?.ok) {
+                    return response.json();
+                } else {
+                    window.location.href = "/purchaseMaterials";
+                }
+            }).then(json => {
             alert(json.message);
         });
     });

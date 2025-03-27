@@ -37,6 +37,7 @@ public class MaterialPurchaseService {
                 .orElseThrow(() -> new ResourceNotFoundException("Raw material not found"));
 
         rawMaterial.setQuantity(rawMaterial.getQuantity() + rawMaterialPurchase.getQuantity());
+        rawMaterial.setTotalCost(rawMaterial.getTotalCost() + rawMaterialPurchase.getTotalCost());
         rawMaterialRepository.save(rawMaterial);
 
         rawMaterialPurchase.setDate(LocalDate.now());

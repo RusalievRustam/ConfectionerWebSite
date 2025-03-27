@@ -56,12 +56,31 @@ public class IngredientService {
         return ingredientRepository.getByFinishedProductId(finishedProductId);
     }
 
-    public void updateIngredient(Ingredient updatedIngredient) {
+    public void updateIngredient(Ingredient updatedIngredient) throws IngredientsException {
         Ingredient existingIngredient = getIngredientById(updatedIngredient.getId());
-        existingIngredient.setFinishedProduct(updatedIngredient.getFinishedProduct());
-        existingIngredient.setRawMaterial(updatedIngredient.getRawMaterial());
-        existingIngredient.setQuantity(updatedIngredient.getQuantity());
-        ingredientRepository.save(existingIngredient);
+        RawMaterial rawMaterial = rawMaterialRepository.findByName(updatedIngredient.getRawMaterial().getName());
+
+        if (rawMaterial == null) {
+            throw new IngredientsException("Raw material not found: " + updatedIngredient.getRawMaterial().getName());
+        }
+
+        double difference = updatedIngredient.getQuantity() - existingIngredient.getQuantity();
+
+        // Проверяем, хватает ли сырья для обновленного количества
+        if (rawMaterial.getQuantity() >= difference) {
+            // Обновляем количество сырья
+            rawMaterial.setQuantity(rawMaterial.getQuantity() - difference);
+            rawMaterialRepository.save(rawMaterial);
+
+            // Обновляем данные ингредиента
+            existingIngredient.setFinishedProduct(updatedIngredient.getFinishedProduct());
+            existingIngredient.setRawMaterial(updatedIngredient.getRawMaterial());
+            existingIngredient.setQuantity(updatedIngredient.getQuantity());
+
+            ingredientRepository.save(existingIngredient);
+        } else {
+            throw new IngredientsException(String.format("Not enough %s in stock. You need to restock.", rawMaterial.getName()));
+        }
     }
 
     public void deleteIngredient(Long id) {

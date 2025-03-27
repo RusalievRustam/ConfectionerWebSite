@@ -70,7 +70,7 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients/edit/{id}")
-    public String updateIngredient(@PathVariable Long id, @ModelAttribute Ingredient ingredient) {
+    public String updateIngredient(@PathVariable Long id, @ModelAttribute Ingredient ingredient) throws IngredientsException {
         final var productId = ingredient.getFinishedProduct().getId();
         ingredient.setId(id); // Установите ID, чтобы обновить существующую запись
         ingredientService.updateIngredient(ingredient);

@@ -12,19 +12,19 @@
 <#if purchaseMaterials?has_content>
     <table>
         <tr>
-            <th>Количество</th>
-            <th>Дата</th>
-            <th>Сумма</th>
-            <th>Сотрудник</th>
             <th>Сырье</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+            <th>Дата</th>
+            <th>Сотрудник</th>
         </tr>
         <#list purchaseMaterials as purchaseMaterial>
             <tr>
-                <td>${purchaseMaterial.quantity}</td>
-                <td>${purchaseMaterial.date}</td>
-                <td>${purchaseMaterial.totalCost}</td>
-                <td>${purchaseMaterial.employee.fullName}</td>
                 <td>${purchaseMaterial.rawMaterial.name}</td>
+                <td>${purchaseMaterial.quantity}</td>
+                <td>${purchaseMaterial.totalCost}</td>
+                <td>${purchaseMaterial.date}</td>
+                <td>${purchaseMaterial.employee.fullName}</td>
             </tr>
         </#list>
     </table>

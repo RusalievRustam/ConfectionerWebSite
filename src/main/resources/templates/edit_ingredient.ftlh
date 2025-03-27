@@ -14,7 +14,8 @@
     <label for="finishedProduct">Продукция:</label>
     <select id="finishedProduct" name="finishedProduct" required>
         <#list finishedProducts as product>
-            <option value="${product.id}" <#if product.id == ingredient.finishedProduct.id>selected</#if>>${product.name}</option>
+            <option value="${product.id}"
+                    <#if product.id == ingredient.finishedProduct.id>selected</#if>>${product.name}</option>
         </#list>
     </select>
 
@@ -32,5 +33,28 @@
 </form>
 
 <a href="/ingredients/${ingredient.finishedProduct.id}">Назад</a>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch(this.action, { // this.action = "/ingredients/edit/${ingredient.id}"
+            method: "POST",
+            body: new URLSearchParams(formData) // Преобразуем в application/x-www-form-urlencoded
+        })
+            .then(response => {
+                if (!response?.ok) {
+                    return response.json();
+                } else {
+                    window.location.href = "/ingredients";
+                }
+            }).then(json => {
+            alert(json.message);
+        });
+    });
+</script>
+
 </body>
 </html>
