@@ -48,13 +48,12 @@
                 if (!response?.ok) {
                     return response.json();
                 } else {
-                    window.location.href = "/ingredients";
+                    window.location.href = "/ingredients/${ingredient.finishedProduct.id}";
                 }
             }).then(json => {
             alert(json.message);
         });
     });
 </script>
-
 </body>
 </html>
