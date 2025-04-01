@@ -11,17 +11,11 @@
 
 <h1>Продажа продукта</h1>
 
-<form id="purchaseForm" action="/productSale/create" method="post">
+<form id="purchaseForm" action="/product/sale" method="post">
     <!-- Выбор продукта -->
-    <label for="finishedProduct">Продукт:</label>
-    <select id="finishedProduct" name="finishedProduct" required>
-        <option value="">Выберите продукт</option>
-        <#list finishedProducts as product>
-            <option value="${product.id}" data-price="${product.totalCost / product.quantity}">
-                ${product.name}
-            </option>
-        </#list>
-    </select>
+    <h3>${productSale.finishedProduct}</h3>
+
+    <input type="hidden" id="data-price" value="${cost}">
 
     <!-- Количество -->
     <label for="quantity">Количество:</label>
@@ -53,13 +47,12 @@
     document.addEventListener("DOMContentLoaded", function () {
         let today = new Date().toISOString().split('T')[0]; // Получаем дату в формате YYYY-MM-DD
         document.getElementById("date").value = today;
-        const productSelect = document.getElementById("finishedProduct");
         const quantityInput = document.getElementById("quantity");
         const totalCostInput = document.getElementById("totalCost");
 
         function updateTotalCost() {
             const selectedOption = productSelect.options[productSelect.selectedIndex];
-            const pricePerUnit = parseFloat(selectedOption.getAttribute("data-price")) || 0;
+            const pricePerUnit = parseFloat(document.getElementById("data-price")) || 0;
             const quantity = parseFloat(quantityInput.value) || 0;
             totalCostInput.value = (pricePerUnit * quantity).toFixed(2);
         }

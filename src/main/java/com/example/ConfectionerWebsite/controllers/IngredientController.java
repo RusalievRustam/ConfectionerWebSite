@@ -27,13 +27,6 @@ public class IngredientController {
     private final FinishedProductService productService;
     private final RawMaterialService rawMaterialService;
 
-    @GetMapping("/ingredients")
-    public String getAllIngredients(Model model) {
-        List<Ingredient> ingredients = ingredientService.getAllIngredients();
-        model.addAttribute("ingredients", ingredients);
-        return "ingredients"; // Имя HTML-страницы
-    }
-
     @GetMapping("/ingredients/{id}")
     public String finishedProductInfo(@PathVariable Long id, Model model) {
         List<Ingredient> ingredients = ingredientService.getIngredients(id);

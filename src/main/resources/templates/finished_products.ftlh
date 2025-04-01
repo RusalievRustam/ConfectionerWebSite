@@ -29,6 +29,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         <#list products as finishedProduct>
             <tr>
@@ -43,6 +44,11 @@
                 </td>
                 <td>
                     <form action="/edit/${finishedProduct.id}" method="get">
+                        <button type="submit">Редактировать</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/product/sale/${finishedProduct.id}" method="get">
                         <button type="submit">Редактировать</button>
                     </form>
                 </td>
