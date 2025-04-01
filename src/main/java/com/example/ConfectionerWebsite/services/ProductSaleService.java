@@ -24,24 +24,20 @@ public class ProductSaleService {
         FinishedProduct finishedProduct = finishedProductRepository.findById(productSale.getFinishedProduct().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Готовый продукт не найден"));
         if (finishedProduct.getQuantity() < productSale.getQuantity()) {
-            throw new RuntimeException("Недостаточно количества продукта для продажи");
+            throw new ResourceNotFoundException("Недостаточно количества продукта для продажи");
         }
-
-        double CostPerProduct = finishedProduct.getTotalCost() / finishedProduct.getQuantity();
 
         Budget budget = budgetRepository.findById(1L)
                 .orElseThrow(() -> new ResourceNotFoundException("Бюджет не найден"));
 
-        double markup = budget.getMarkup();
-        double totalRevenue = CostPerProduct * productSale.getQuantity();
-        double profit = totalRevenue * markup;
+        final var productPrice = finishedProduct.getTotalCost() / finishedProduct.getQuantity();
 
         finishedProduct.setQuantity(finishedProduct.getQuantity() - productSale.getQuantity());
         finishedProductRepository.save(finishedProduct);
 
-        finishedProduct.setTotalCost(finishedProduct.getTotalCost() - productSale.getTotalCost());
+        finishedProduct.setTotalCost(finishedProduct.getTotalCost() - productPrice * productSale.getQuantity());
 
-        budget.setTotalAmount((budget.getTotalAmount() + profit));
+        budget.setTotalAmount(budget.getTotalAmount() + productSale.getTotalCost());
         budgetRepository.save(budget);
 
         return productSaleRepository.save(productSale);

@@ -57,8 +57,10 @@
             const quantity = parseFloat(quantityInput.value) || 0;
             totalCostInput.value = (pricePerUnit * quantity).toFixed(2);
         }
+
         quantityInput.addEventListener("input", updateTotalCost);
     });
+
 </script>
 
 </body>

@@ -32,8 +32,5 @@
     <p>Нет проданных продуктов.</p>
 </#if>
 
-<form action="/productSale/create" method="get">
-    <button type="submit">Создать</button>
-</form>
 </body>
 </html>
