@@ -13,11 +13,11 @@
 
 <form id="purchaseForm" action="/product/sale" method="post">
     <!-- Выбор продукта -->
-    <h3>${productSale.finishedProduct.name}</h3>
+    <h3>${finishedProduct.name}</h3>
 
     <input type="hidden" id="data-price" value="${cost}">
 
-    <input type="hidden" id="finishedProduct" value="${productSale.finishedProduct}">
+    <input type="hidden" id="finishedProduct" name="finishedProduct" value="${finishedProduct.id}">
 
     <!-- Количество -->
     <label for="quantity">Количество:</label>

@@ -33,17 +33,16 @@ public class ProductSaleController {
     @GetMapping("/product/sale/{id}")
     public String createProductSaleForm(@PathVariable Long id, Model model) throws ResourceNotFoundException {
         final var finishedProduct = finishedProductService.getFinishedProductById(id);
-        final var productSale = new ProductSale();
-        productSale.setFinishedProduct(finishedProduct);
         List<Employee> employees = employeeService.getAllEmployees();
-        model.addAttribute("productSale", productSale);
+        model.addAttribute("productSale", new ProductSale());
+        model.addAttribute("finishedProduct", finishedProduct);
         model.addAttribute("cost", finishedProduct.getTotalCost() / finishedProduct.getQuantity());
         model.addAttribute("employees", employees);
         return "product_sale";
     }
 
-    @PostMapping("/product/sale/{id}")
-    public String createProductSale(@PathVariable Long id, @ModelAttribute ProductSale productSale) {
+    @PostMapping("/product/sale")
+    public String createProductSale(@ModelAttribute ProductSale productSale) {
         productSaleService.createProductSale(productSale);
         return "redirect:/productSales";
     }
