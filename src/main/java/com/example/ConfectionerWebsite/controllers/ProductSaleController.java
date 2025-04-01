@@ -1,8 +1,8 @@
 package com.example.ConfectionerWebsite.controllers;
 
 import com.example.ConfectionerWebsite.entities.Employee;
-import com.example.ConfectionerWebsite.entities.FinishedProduct;
 import com.example.ConfectionerWebsite.entities.ProductSale;
+import com.example.ConfectionerWebsite.exceptions.NotEnoughResourceException;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.services.BudgetService;
 import com.example.ConfectionerWebsite.services.EmployeeService;
@@ -47,8 +47,8 @@ public class ProductSaleController {
     }
 
     @PostMapping("/product/sale")
-    public String createProductSale(@ModelAttribute ProductSale productSale) {
+    public String createProductSale(@RequestBody ProductSale productSale) throws NotEnoughResourceException {
         productSaleService.createProductSale(productSale);
-        return "redirect:/productSales";
+        return "redirect:/products";
     }
 }

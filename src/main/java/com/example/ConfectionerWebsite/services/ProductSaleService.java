@@ -3,6 +3,7 @@ package com.example.ConfectionerWebsite.services;
 import com.example.ConfectionerWebsite.entities.Budget;
 import com.example.ConfectionerWebsite.entities.FinishedProduct;
 import com.example.ConfectionerWebsite.entities.ProductSale;
+import com.example.ConfectionerWebsite.exceptions.NotEnoughResourceException;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.repositories.BudgetRepository;
 import com.example.ConfectionerWebsite.repositories.FinishedProductRepository;
@@ -20,11 +21,11 @@ public class ProductSaleService {
     private FinishedProductRepository finishedProductRepository;
     private BudgetRepository budgetRepository;
 
-    public ProductSale createProductSale(ProductSale productSale) throws ResourceNotFoundException {
+    public ProductSale createProductSale(ProductSale productSale) throws ResourceNotFoundException, NotEnoughResourceException {
         FinishedProduct finishedProduct = finishedProductRepository.findById(productSale.getFinishedProduct().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Готовый продукт не найден"));
         if (finishedProduct.getQuantity() < productSale.getQuantity()) {
-            throw new ResourceNotFoundException("Недостаточно количества продукта для продажи");
+            throw new NotEnoughResourceException("Недостаточно количества продукта для продажи");
         }
 
         Budget budget = budgetRepository.findById(1L)

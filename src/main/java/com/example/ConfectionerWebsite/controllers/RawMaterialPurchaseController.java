@@ -3,7 +3,7 @@ package com.example.ConfectionerWebsite.controllers;
 import com.example.ConfectionerWebsite.entities.Employee;
 import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.entities.RawMaterialPurchase;
-import com.example.ConfectionerWebsite.exceptions.NotEnoughFundException;
+import com.example.ConfectionerWebsite.exceptions.NotEnoughResourceException;
 import com.example.ConfectionerWebsite.services.EmployeeService;
 import com.example.ConfectionerWebsite.services.MaterialPurchaseService;
 import com.example.ConfectionerWebsite.services.RawMaterialService;
@@ -44,7 +44,7 @@ public class RawMaterialPurchaseController {
     }
 
     @PostMapping("/purchaseMaterial/create")
-    public String createPurchaseMaterial(@RequestBody RawMaterialPurchase rawMaterialPurchase) throws NotEnoughFundException {
+    public String createPurchaseMaterial(@RequestBody RawMaterialPurchase rawMaterialPurchase) throws NotEnoughResourceException {
         materialPurchaseService.createPurchase(rawMaterialPurchase);
         return "redirect:/purchaseMaterials";
     }

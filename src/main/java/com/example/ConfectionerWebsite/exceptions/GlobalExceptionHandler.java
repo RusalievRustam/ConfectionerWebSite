@@ -18,8 +18,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
-    @ExceptionHandler(NotEnoughFundException.class)
-    public ResponseEntity<Map<String, String>> handleNotEnoughMaterialException(NotEnoughFundException e){
+    @ExceptionHandler(NotEnoughResourceException.class)
+    public ResponseEntity<Map<String, String>> handleNotEnoughMaterialException(NotEnoughResourceException e){
         final var errorMessage = new HashMap<String, String>();
         errorMessage.put("message", e.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);

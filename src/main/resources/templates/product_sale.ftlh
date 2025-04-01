@@ -11,11 +11,11 @@
 
 <h1>Продажа продукта</h1>
 
-<form id="purchaseForm" action="/product/sale" method="post">
+<form id="saleForm">
     <!-- Выбор продукта -->
     <h3>${finishedProduct.name}</h3>
 
-    <input type="hidden" id="data-price" value="${cost}">
+    <input type="hidden" id="productPrice" value="${cost}">
 
     <input type="hidden" id="finishedProduct" name="finishedProduct" value="${finishedProduct.id}">
 
@@ -43,7 +43,7 @@
     <button type="submit">Добавить</button>
 </form>
 
-<a href="/productSales">Назад</a>
+<a href="/products">Назад</a>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -53,12 +53,39 @@
         const totalCostInput = document.getElementById("totalCost");
 
         function updateTotalCost() {
-            const pricePerUnit = parseFloat(document.getElementById("data-price").value.replace(/\s+/g, '')) || 0;
+            const pricePerUnit = parseFloat(document.getElementById("productPrice").value.replace(/,/g,'')) || 0;
             const quantity = parseFloat(quantityInput.value) || 0;
             totalCostInput.value = (pricePerUnit * quantity).toFixed(2);
         }
 
         quantityInput.addEventListener("input", updateTotalCost);
+    });
+
+    document.getElementById("saleForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent normal form submission
+
+        const productSale = {
+            finishedProduct: {id: document.getElementById("finishedProduct").value},
+            quantity: parseFloat(document.getElementById("quantity").value),
+            date: document.getElementById("date").value,
+            totalCost: parseFloat(document.getElementById("totalCost").value),
+            employee: {id: document.getElementById("employee").value}
+        };
+
+        fetch("/product/sale", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(productSale)
+        })
+            .then(response => {
+                if (!response?.ok) {
+                    return response.json();
+                } else {
+                    window.location.href = "/products";
+                }
+            }).then(json => {
+            alert(json.message);
+        });
     });
 
 </script>
