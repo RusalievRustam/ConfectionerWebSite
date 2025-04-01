@@ -7,16 +7,19 @@ import com.example.ConfectionerWebsite.exceptions.NotEnoughFundException;
 import com.example.ConfectionerWebsite.services.EmployeeService;
 import com.example.ConfectionerWebsite.services.MaterialPurchaseService;
 import com.example.ConfectionerWebsite.services.RawMaterialService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
 @RequestMapping
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RawMaterialPurchaseController {
 
     private final MaterialPurchaseService materialPurchaseService;
@@ -45,5 +48,4 @@ public class RawMaterialPurchaseController {
         materialPurchaseService.createPurchase(rawMaterialPurchase);
         return "redirect:/purchaseMaterials";
     }
-
 }

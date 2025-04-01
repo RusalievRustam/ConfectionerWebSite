@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="ru">
+<link rel="stylesheet" href="/styles.css">
+
+<body>
 <header>
     <nav id="menu">
         <ul>
@@ -25,3 +30,5 @@
     // Fetch budget data when the page loads
     window.onload = fetchTotalBudget;
 </script>
+</body>
+</html>

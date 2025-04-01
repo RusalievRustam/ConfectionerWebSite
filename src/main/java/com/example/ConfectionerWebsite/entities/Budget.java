@@ -19,6 +19,9 @@ public class Budget {
     @Column(name = "total_amount")
     private Double totalAmount;
 
+    @Column(name = "markup")
+    private Double markup;
+
     public Long getId() {
         return id;
     }
