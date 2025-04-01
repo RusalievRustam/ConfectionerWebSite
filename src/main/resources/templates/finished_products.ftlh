@@ -23,9 +23,9 @@
     <table>
         <tr>
             <th>Продукт</th>
-            <th>Цена</th>
+            <th>Сумма</th>
             <th>Количество</th>
-            <th>Еденица изм.</th>
+            <th>Единица изм.</th>
             <th></th>
             <th></th>
             <th></th>
@@ -49,7 +49,7 @@
                 </td>
                 <td>
                     <form action="/product/sale/${finishedProduct.id}" method="get">
-                        <button type="submit">Редактировать</button>
+                        <button type="submit">Продать</button>
                     </form>
                 </td>
                 <td>

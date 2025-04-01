@@ -42,8 +42,8 @@ public class ProductSaleController {
         return "product_sale";
     }
 
-    @PostMapping("/productSale/sale")
-    public String createProductSale(@ModelAttribute ProductSale productSale) {
+    @PostMapping("/product/sale/{id}")
+    public String createProductSale(@PathVariable Long id, @ModelAttribute ProductSale productSale) {
         productSaleService.createProductSale(productSale);
         return "redirect:/productSales";
     }

@@ -22,7 +22,7 @@
     <input type="number" step="0.01" id="totalCost" name="totalCost" value="${rawMaterial.totalCost}" required
            placeholder="Введите сумму">
 
-    <label for="name">Еденица измерения:</label>
+    <label for="name">Единица измерения:</label>
     <select id="measurementUnit" name="measurementUnit" required>
         <option value="">Выберите единицу измерения</option>
         <#list measurementUnits as unit>

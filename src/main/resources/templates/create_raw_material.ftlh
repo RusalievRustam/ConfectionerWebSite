@@ -18,7 +18,7 @@
     <label for="quantity">Количество:</label>
     <input type="number" id="quantity" name="quantity" required step="0.01" min="0">
 
-    <label for="totalCost">Стоимость:</label>
+    <label for="totalCost">Сумма:</label>
     <input type="number" id="totalCost" name="totalCost" required step="0.01" min="0">
 
     <label for="measurementUnit">Единица измерения:</label>

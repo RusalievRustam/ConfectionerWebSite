@@ -14,5 +14,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
     List<Ingredient> findAllByFinishedProductId(Long id);
 
+
     List<Ingredient> findAllByRawMaterialId(Long id);
 }

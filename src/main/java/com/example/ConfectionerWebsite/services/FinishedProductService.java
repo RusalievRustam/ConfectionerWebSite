@@ -5,6 +5,7 @@ import com.example.ConfectionerWebsite.entities.RawMaterial;
 import com.example.ConfectionerWebsite.exceptions.ResourceNotFoundException;
 import com.example.ConfectionerWebsite.repositories.FinishedProductRepository;
 import com.example.ConfectionerWebsite.repositories.IngredientRepository;
+import com.example.ConfectionerWebsite.repositories.ProductSaleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

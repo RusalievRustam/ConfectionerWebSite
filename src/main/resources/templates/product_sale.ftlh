@@ -13,9 +13,11 @@
 
 <form id="purchaseForm" action="/product/sale" method="post">
     <!-- Выбор продукта -->
-    <h3>${productSale.finishedProduct}</h3>
+    <h3>${productSale.finishedProduct.name}</h3>
 
     <input type="hidden" id="data-price" value="${cost}">
+
+    <input type="hidden" id="finishedProduct" value="${productSale.finishedProduct}">
 
     <!-- Количество -->
     <label for="quantity">Количество:</label>
@@ -51,13 +53,10 @@
         const totalCostInput = document.getElementById("totalCost");
 
         function updateTotalCost() {
-            const selectedOption = productSelect.options[productSelect.selectedIndex];
-            const pricePerUnit = parseFloat(document.getElementById("data-price")) || 0;
+            const pricePerUnit = parseFloat(document.getElementById("data-price").value.replace(/\s+/g, '')) || 0;
             const quantity = parseFloat(quantityInput.value) || 0;
             totalCostInput.value = (pricePerUnit * quantity).toFixed(2);
         }
-
-        productSelect.addEventListener("change", updateTotalCost);
         quantityInput.addEventListener("input", updateTotalCost);
     });
 </script>

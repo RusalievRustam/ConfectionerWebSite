@@ -19,10 +19,10 @@
     <label for="name">Количество:</label>
     <input type="text" id="quantity" name="quantity" required>
 
-    <label for="name">Стоимость:</label>
+    <label for="name">Сумма:</label>
     <input type="text" id="totalCost" name="totalCost" required>
 
-    <label for="name">Еденица измерения:</label>
+    <label for="name">Единица измерения:</label>
     <select id="measurementUnit" name="measurementUnit" required>
         <option value="">Выберите единицу измерения</option>
         <#list measurementUnits as unit>
