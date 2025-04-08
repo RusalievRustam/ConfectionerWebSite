@@ -60,8 +60,9 @@ public class IngredientService {
         Ingredient existingIngredient = getIngredientById(updatedIngredient.getId());
         RawMaterial rawMaterial = rawMaterialRepository.findByName(updatedIngredient.getRawMaterial().getName());
 
-        if (rawMaterial == null) {
-            throw new IngredientsException("Raw material not found: " + updatedIngredient.getRawMaterial().getName());
+        // Проверяем, изменился ли вид сырья
+        if (!existingIngredient.getRawMaterial().getName().equals(updatedIngredient.getRawMaterial().getName())) {
+            throw new IngredientsException("Cannot change raw material type for an existing ingredient.");
         }
 
         double difference = updatedIngredient.getQuantity() - existingIngredient.getQuantity();

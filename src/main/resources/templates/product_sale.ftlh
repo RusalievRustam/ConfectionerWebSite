@@ -13,7 +13,7 @@
 
 <form id="saleForm">
     <!-- Выбор продукта -->
-    <h3>${finishedProduct.name}</h3>
+    <h3>${finishedProduct.name} (Осталось: ${finishedProduct.quantity})</h3>
 
     <input type="hidden" id="productPrice" value="${cost}">
 
@@ -53,7 +53,7 @@
         const totalCostInput = document.getElementById("totalCost");
 
         function updateTotalCost() {
-            const pricePerUnit = parseFloat(document.getElementById("productPrice").value.replace(/,/g,'')) || 0;
+            const pricePerUnit = parseFloat(document.getElementById("productPrice").value.replace(/,/g, '')) || 0;
             const quantity = parseFloat(quantityInput.value) || 0;
             totalCostInput.value = (pricePerUnit * quantity).toFixed(2);
         }

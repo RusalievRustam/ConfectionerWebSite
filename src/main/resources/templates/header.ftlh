@@ -5,23 +5,29 @@
             <li><a href="/rawMaterials">Сырье</a></li>
             <li><a href="/purchaseMaterials">Закупка сырья</a></li>
             <li><a href="/productSales">Продажа продукта</a></li>
+            <li><a href="/productions">Производство продукта</a></li>
         </ul>
-        <div id="totalBudget"><strong>Бюджет: </strong><span id="budget">Loading...</span><strong> Сом</strong></div>
+        <div id="totalBudget">
+            <strong>Бюджет: </strong>
+            <span id="budget">Загрузка...</span>
+            <strong> сом</strong>
+        </div>
     </nav>
 </header>
+
 <script>
-    function fetchTotalBudget() {
-        fetch('/budget') // Replace with your actual API endpoint
-            .then(response => response.json())
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('/budget') // API для получения бюджета
+            .then(response => {
+                if (!response.ok) throw new Error("Ошибка при загрузке данных");
+                return response.json();
+            })
             .then(data => {
-                document.getElementById("budget").innerText = data.budget;
+                document.getElementById("budget").innerText = data.budget.toLocaleString("ru-RU");
             })
             .catch(error => {
-                console.error("Error fetching budget:", error);
-                document.getElementById("budget").innerText = "Error";
+                console.error("Ошибка получения бюджета:", error);
+                document.getElementById("budget").innerText = "Ошибка";
             });
-    }
-
-    // Fetch budget data when the page loads
-    window.onload = fetchTotalBudget;
+    });
 </script>

@@ -27,7 +27,8 @@
     </select>
 
     <label for="quantity">Количество:</label>
-    <input type="number" step="0.01" id="quantity" name="quantity" value="${ingredient.quantity}">
+    <input type="number" step="0.01" id="quantity" name="quantity" value="${ingredient.quantity}" required
+           placeholder="Введите количество">
 
     <button type="submit">Сохранить</button>
 </form>

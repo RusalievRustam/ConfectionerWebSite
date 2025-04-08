@@ -20,17 +20,18 @@
     <label for="name">Сумма:</label>
     <input type="number" step=0.01 id="totalCost" name="totalCost" value="${finishedProduct.totalCost}">
 
-    <label for="name">Еденица измерения:</label>
+    <label for="measurementUnit">Единица измерения:</label>
     <select id="measurementUnit" name="measurementUnit" required>
         <option value="">Выберите единицу измерения</option>
         <#list measurementUnits as unit>
-            <option value="${unit.id}">${unit.name}</option>
+            <option value="${unit.id}"
+                    <#if finishedProduct.measurementUnit.id == unit.id>selected</#if>>
+                ${unit.name}
+            </option>
         </#list>
     </select>
-
     <button type="submit">Сохранить</button>
 </form>
-
 <a href="/products">Назад</a>
 </body>
 </html>
