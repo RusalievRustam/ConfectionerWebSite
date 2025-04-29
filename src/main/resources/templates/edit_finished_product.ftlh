@@ -30,8 +30,10 @@
             </option>
         </#list>
     </select>
+
     <button type="submit">Сохранить</button>
 </form>
+
 <a href="/products">Назад</a>
 </body>
 </html>

@@ -80,7 +80,7 @@
             <option value="${rawMaterial}">${rawMaterial}</option>
             </#list>
         </select>
-        <input type="number" name="quantity" placeholder="Quantity" required>
+        <input type="number" name="quantity" placeholder="Quantity" required value="0">
         <button type="button" onclick="removeIngredientField(this)">❌</button>
     </div>
 </div>

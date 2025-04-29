@@ -13,13 +13,13 @@
 
 <form action="#" th:action="@{/rawMaterial/create}" method="post">
     <label for="name">Название сырья:</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" required value="0">
 
     <label for="quantity">Количество:</label>
-    <input type="number" id="quantity" name="quantity" required step="0.01" min="0">
+    <input type="number" id="quantity" name="quantity" required step="0.01" min="0" value="0" >
 
     <label for="totalCost">Сумма:</label>
-    <input type="number" id="totalCost" name="totalCost" required step="0.01" min="0">
+    <input type="number" id="totalCost" name="totalCost" required step="0.01" min="0" value="0">
 
     <label for="measurementUnit">Единица измерения:</label>
     <select id="measurementUnit" name="measurementUnit" required>

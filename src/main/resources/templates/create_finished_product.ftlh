@@ -17,10 +17,10 @@
     <input type="text" id="name" name="name" required>
 
     <label for="name">Количество:</label>
-    <input type="text" id="quantity" name="quantity" required>
+    <input type="text" id="quantity" name="quantity" required value="0">
 
     <label for="name">Сумма:</label>
-    <input type="text" id="totalCost" name="totalCost" required>
+    <input type="text" id="totalCost" name="totalCost" required value="0">
 
     <label for="name">Единица измерения:</label>
     <select id="measurementUnit" name="measurementUnit" required>

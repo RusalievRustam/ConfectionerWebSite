@@ -64,5 +64,6 @@
 
 <form action="/create" method="create">
     <button type="submit">Создать</button>
-</form></body>
+</form>
+</body>
 </html>

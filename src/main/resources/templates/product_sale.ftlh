@@ -15,7 +15,7 @@
     <!-- Выбор продукта -->
     <h3>${finishedProduct.name} (Осталось: ${finishedProduct.quantity})</h3>
 
-    <input type="hidden" id="productPrice" value="${cost}">
+    <input type="hidden" id="productPrice" value="${cost?c}">
 
     <input type="hidden" id="finishedProduct" name="finishedProduct" value="${finishedProduct.id}">
 
@@ -56,6 +56,7 @@
             const pricePerUnit = parseFloat(document.getElementById("productPrice").value.replace(/,/g, '')) || 0;
             const quantity = parseFloat(quantityInput.value) || 0;
             totalCostInput.value = (pricePerUnit * quantity).toFixed(2);
+
         }
 
         quantityInput.addEventListener("input", updateTotalCost);
