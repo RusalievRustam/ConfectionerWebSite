@@ -22,6 +22,19 @@
     </properties>
 
     <dependencies>
+        <!--Зависимости для отчетов -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.30</version>
+        </dependency>
+
         <!-- Основные зависимости -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

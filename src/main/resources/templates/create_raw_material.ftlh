@@ -13,7 +13,7 @@
 
 <form action="#" th:action="@{/rawMaterial/create}" method="post">
     <label for="name">Название сырья:</label>
-    <input type="text" id="name" name="name" required value="0">
+    <input type="text" id="name" name="name">
 
     <label for="quantity">Количество:</label>
     <input type="number" id="quantity" name="quantity" required step="0.01" min="0" value="0" >

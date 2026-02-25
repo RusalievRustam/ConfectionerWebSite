@@ -44,6 +44,10 @@
             </option>
         </#list>
     </select>
+
+    <label for="date">Дата:</label>
+    <input type="date" id="date" name="date" required>
+
     <br><br>
 
     <button type="submit">Сохранить</button>
@@ -51,5 +55,11 @@
 <br>
 <a href="/productions">← Назад к списку производств</a>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split('T')[0]; // Получаем дату в формате YYYY-MM-DD
+        document.getElementById("date").value = today;
+    });
+</script>
 </body>
 </html>

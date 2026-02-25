@@ -17,6 +17,7 @@
             <th>Количество</th>
             <th>Дата</th>
             <th>Сотрудник</th>
+            <th>Дата</th>
         </tr>
         <#list productions as production>
             <tr>
@@ -24,6 +25,7 @@
                 <td>${production.quantity}</td>
                 <td>${production.date}</td>
                 <td>${production.employee.fullName}</td>
+                <td>${production.date}</td>
             </tr>
         </#list>
     </table>

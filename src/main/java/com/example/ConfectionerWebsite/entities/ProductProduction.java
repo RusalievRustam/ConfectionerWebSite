@@ -45,7 +45,7 @@ public class ProductProduction {
         this.finishedProduct = finishedProduct;
     }
 
-    public Double getQuantity() {
+    public Double   getQuantity() {
         return quantity;
     }
 

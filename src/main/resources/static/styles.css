@@ -1,118 +1,136 @@
-/* Общие стили */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+
 body {
     font-family: 'Inter', sans-serif;
+    font-weight: 300;
     margin: 0;
-    padding-top: 90px; /* Отступ под фиксированный header */
-    background-image: url('images/Conf.jpg');
+    padding-top: 90px;
+    padding-left: 280px;
+    padding-right: 20px;
+    background-color: #fce0d3;
+    /*background-image: url('images/Conf.jpg');*/
     background-size: cover;
     background-position: center -600px;
-    background-attachment: fixed; /* Фиксируем фон при прокрутке */
+    background-attachment: fixed;
     backdrop-filter: blur(5px);
-    background-color: #f5ebe0; /* Светлый бежевый */
-    color: #5d4037; /* Тёмно-коричневый */
-    padding-left: 20px;
-    padding-right: 20px;
-
+    color: #3E2723;
 }
 
-/* Заголовки */
-h1 {
-    color: #795548; /* Кофейный */
+h1, h2, h3, h4, h5, h6,
+td, th,
+#totalBudget,
+a {
+    font-weight: 300;
+}
+
+header {
+    display: none;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 240px;
+    background: #FFF3E0;
+    backdrop-filter: blur(10px);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    padding: 20px 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 1px solid #D7CCC8;
+}
+
+#totalBudget {
+    font-size: 18px;
+    color: #3E2723;
+    margin-bottom: 30px;
+    padding: 2px;
+    width: 100%;
     text-align: center;
 }
 
-/* Фиксированное верхнее меню (glassmorphism) */
-header {
-    background: rgba(121, 85, 72, 0.8); /* Полупрозрачный кофейный */
-    padding: 15px 0;
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    z-index: 1000;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    backdrop-filter: blur(10px); /* Размытие фона */
+#menu {
+    width: 100%;
 }
 
-/* Горизонтальный список навигации */
-nav ul {
+#menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
 }
 
-/* Элементы меню */
-nav ul li {
-    margin: 0 15px;
+#menu ul li {
+    margin-bottom: 20px;
 }
 
-/* Кнопки навигации */
-nav ul li a {
-    color: #fff;
+#menu ul li a {
+    display: block;
+    color: #4E342E;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 300;
     text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
-    background: linear-gradient(90deg, #d7b49e, #a67c52); /* Кофейный градиент */
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: #FBE9E7;
+    border: 1px solid #D7CCC8;
 }
 
-/* Эффект при наведении */
-nav ul li a:hover {
-    background: rgba(165, 117, 85, 0.5);
-    transform: translateY(-2px);
+#menu ul li a:hover {
+    background-color: #f8c09d;
+    color: #ffffff;
 }
 
-/* Таблицы */
 table {
     font-family: 'Inter', sans-serif;
+    font-weight: 300;
     border-collapse: collapse;
     width: 100%;
-    background: rgba(243, 229, 210, 0.9); /* Светлый бежевый */
+    background: #FFF8E1;
     backdrop-filter: blur(5px);
     border-radius: 10px;
     overflow: hidden;
     padding: 50px;
+    color: #3E2723;
+    border-width: 2px;
+    border-color: #8D6E63;
 }
 
-/* Ячейки таблицы */
 td, th {
-    border: 1px solid #d7b49e; /* Кофейная граница */
+    border: 1px solid #D7CCC8;
     text-align: left;
     padding: 10px;
 }
 
-/* Чередование строк */
 tr:nth-child(even) {
-    background-color: rgba(215, 180, 158, 0.3); /* Кремовый */
+    background-color: #FFE0B2;
 }
 
-/* Кнопки */
 button {
-    background: linear-gradient(90deg, #d7b49e, #a67c52);
+    background-color: #FBE9E7;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #D7CCC8;
     padding: 10px 15px;
     font-size: 14px;
-    color: white;
+    font-weight: 300;
+    color: #4E342E;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 10px;
 }
 
 button:hover {
-    background: linear-gradient(90deg, #a67c52, #d7b49e);
-    transform: scale(1.05);
+    background-color: #f8c09d;
+    color: #ffffff;
+    transform: scale(1.03);
 }
 
-/* Ссылки */
 a {
-    color: #8d6e63; /* Кофейный */
+    color: #3E2723;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -120,12 +138,67 @@ a {
 a:hover {
     text-decoration: underline;
 }
-#totalBudget{
-    float: right;
-    padding-right: 20px;
-    font-size: 20px;
-    color: white;
+
+input[type="number"],
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #D7CCC8;
+    border-radius: 8px;
+    background-color: #FBE9E7;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #3E2723;
+    box-sizing: border-box;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
-#menu{
-    padding-top: 20px;
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: #f8c09d;
+    box-shadow: 0 0 5px rgba(248, 192, 157, 0.6);
+}
+
+select {
+    appearance: none; /* убирает системную стрелку */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #FBE9E7;
+    border: 1px solid #D7CCC8;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #3E2723;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='14' height='10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%233E2723' d='M1 1l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    box-sizing: border-box;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #f8c09d;
+    box-shadow: 0 0 5px rgba(248, 192, 157, 0.6);
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #D7CCC8; /* светло-коричневая линия */
+    margin: -20px 0 10px 0;
+    width: 100%;
 }

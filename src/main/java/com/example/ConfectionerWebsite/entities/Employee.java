@@ -20,8 +20,9 @@ public class Employee {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "position")
-    private String position;
+    @ManyToOne
+    @JoinColumn(name = "position_id", nullable = false)
+    private Position position;
 
     @Column(name = "salary")
     private Double salary;
@@ -48,11 +49,11 @@ public class Employee {
         this.fullName = fullName;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
