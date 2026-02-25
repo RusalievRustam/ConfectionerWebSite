@@ -7,6 +7,7 @@ import com.example.ConfectionerWebsite.repositories.EmployeeRepository;
 import com.example.ConfectionerWebsite.repositories.PositionRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private final PositionRepository positionRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Transactional
     public void updateRoleAndSalary(Long employeeId, Long positionId, Double salary) {
@@ -31,16 +34,23 @@ public class EmployeeService {
         employeeRepository.save(e);
     }
 
-    public Employee createEmployee(String fullName, Long positionId, Double salary, String address, String phone) {
-        Position position = positionRepository.findById(positionId)
-                .orElseThrow(() -> new ResourceNotFoundException("Роль не найдена " + positionId));
-        Employee employee = new Employee();
-        employee.setFullName(fullName);
-        employee.setPosition(position);
-        employee.setSalary(salary);
-        employee.setAddress(address);
-        employee.setPhone(phone);
-        return employeeRepository.save(employee);
+    public void createEmployee(String fullName, Long positionId, Double salary, String username, String rawPassword) {
+        if (employeeRepository.findByUsername(username).isPresent()) {
+            throw new IllegalArgumentException("Такой username уже существует");
+        }
+
+        var position = positionRepository.findById(positionId)
+                .orElseThrow(() -> new RuntimeException("Роль не найдена"));
+
+        Employee e = new Employee();
+        e.setFullName(fullName);
+        e.setPosition(position);         // важно: Position, а не String
+        e.setSalary(salary);
+        e.setUsername(username);
+        e.setPassword(passwordEncoder.encode(rawPassword));
+        e.setEnabled(true);              // если у тебя есть enabled
+
+        employeeRepository.save(e);
     }
 
     public List<Employee> getAllEmployees() {

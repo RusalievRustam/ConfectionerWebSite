@@ -19,6 +19,26 @@
             <li><a href="/employees">Сотрудники</a></li>
         </ul>
     </nav>
+    <div style="display:flex; flex-direction:column; align-items:flex-start; gap:6px;">
+        <#-- если пользователь залогинен -->
+        <#if currentUser??>
+            <div>Пользователь: <b>${currentUser}</b></div>
+
+            <#if currentRole??>
+                <div>Роль: <b>${currentRole}</b></div>
+            </#if>
+
+            <form action="/logout" method="post">
+                <#-- CSRF, если включен -->
+                <#if _csrf??>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                </#if>
+                <button type="submit">Выйти</button>
+            </form>
+        <#else>
+            <a href="/login">Войти</a>
+        </#if>
+    </div>
 </aside>
 
 <script>

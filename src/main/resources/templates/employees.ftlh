@@ -69,8 +69,11 @@
 
 <h2>Добавить сотрудника</h2>
 
-<form action="/employees/create" method="post" style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
-    <input type="text" name="fullName" placeholder="ФИО" required>
+<form action="/employees/create" method="post" style="display:flex; flex-direction:column; gap:10px; max-width:400px;">
+    <label>
+        ФИО:
+        <input type="text" name="fullName" required>
+    </label>
 
     <select name="positionId" required>
         <option value="">Выберите роль</option>
@@ -79,10 +82,30 @@
         </#list>
     </select>
 
-    <input type="text" name="salary" placeholder="Зарплата" value="0" required>
+    <label>
+        Зарплата:
+        <input type="text" name="salary" value="0" required>
+    </label>
 
-    <input type="text" name="address" placeholder="Адрес">
-    <input type="text" name="phone" placeholder="Телефон">
+    <label>
+        Адрес:
+        <input type="text" name="address">
+    </label>
+
+    <label>
+        Телефон:
+        <input type="text" name="phone">
+    </label>
+
+    <label>
+        Логин:
+        <input type="text" name="username">
+    </label>
+
+    <label>
+        Пароль:
+        <input type="text" name="password">
+    </label>
 
     <button type="submit">Добавить</button>
 </form>

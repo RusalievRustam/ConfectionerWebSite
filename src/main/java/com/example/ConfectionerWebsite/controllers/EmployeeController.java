@@ -60,6 +60,8 @@ public class EmployeeController {
                                  @RequestParam Long positionId,
                                  @RequestParam(required = false) Double salary,
                                  @RequestParam(required = false) String address,
+                                 @RequestParam String username,
+                                 @RequestParam String password,
                                  @RequestParam String phone,
                                  RedirectAttributes redirectAttributes) {
         try {
